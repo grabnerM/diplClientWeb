@@ -1,0 +1,27 @@
+.map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    margin-top: 60px;;
+  }
+  
+  .map-frame {
+    height: 100%;
+  }
+  
+  #map {
+    height: 100%;
+  }
+  .view {
+    background-size: cover;
+    height: 100vh;
+  }
+
+  #senderlist {
+      z-index: 10;
+      margin-top: 100px;
+      margin-left: -350px;
+  }
