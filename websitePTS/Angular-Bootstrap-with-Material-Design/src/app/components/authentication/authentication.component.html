@@ -1,0 +1,67 @@
+<div class="card-group">
+    <!-- Card -->
+    <mdb-card class="auth" id="login">
+        <!--Card content-->
+        <mdb-card-body>
+            <div class="auth-form">
+                <!--Title-->
+                <mdb-card-title>
+                    <h3>Login</h3>
+                </mdb-card-title>
+
+                <!--Text-->
+                <mdb-card-text>
+                    Sign in
+                </mdb-card-text>
+            </div>
+
+            <form>
+                <div class="align-items-center">
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="user-alt"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" id="inlineFormInputGroup" placeholder="Username">
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Password</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="lock"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" id="inlineFormInputGroup" placeholder="Password">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <button class="auth-button" type="button" mdbBtn color="primary" (click)="login()" mdbWavesEffect>Login</button>
+        </mdb-card-body>
+    </mdb-card>
+
+    <!-- Card -->
+    <mdb-card class="auth" id="register">
+        <!--Card content-->
+        <mdb-card-body>
+            <!--Title-->
+            <mdb-card-title>
+                <h3>Sign up</h3>
+            </mdb-card-title>
+
+            <!--Text-->
+            <mdb-card-text>
+                New Account
+            </mdb-card-text>
+
+            <a href="#" mdbBtn color="primary" mdbWavesEffect>Button</a>
+        </mdb-card-body>
+    </mdb-card>
+</div>
