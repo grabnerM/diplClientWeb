@@ -25,7 +25,7 @@
                                     <mdb-icon fas icon="user-alt"></mdb-icon>
                                 </div>
                             </div>
-                            <input mdbInput type="text" class="form-control py-0" id="inlineFormInputGroup" placeholder="Username" [(ngModel)]="loginUsername" [ngModelOptions]="{standalone: true}">
+                            <input mdbInput type="text" class="form-control py-0" placeholder="Username" [(ngModel)]="loginUsername" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
 
@@ -37,13 +37,13 @@
                                     <mdb-icon fas icon="lock"></mdb-icon>
                                 </div>
                             </div>
-                            <input mdbInput type="text" class="form-control py-0" id="inlineFormInputGroup" placeholder="Password" [(ngModel)]="loginPassword" [ngModelOptions]="{standalone: true}">
+                            <input mdbInput type="password" class="form-control py-0" placeholder="Password" [(ngModel)]="loginPassword" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                 </div>
-            </form>
 
-            <button class="auth-button" type="button" mdbBtn color="primary" (click)="login()" mdbWavesEffect>Login</button>
+                <button class="auth-button" type="button" mdbBtn color="primary" (click)="login()" mdbWavesEffect>Login</button>
+            </form>
         </mdb-card-body>
     </mdb-card>
 

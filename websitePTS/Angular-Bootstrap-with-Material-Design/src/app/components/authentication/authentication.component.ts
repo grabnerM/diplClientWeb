@@ -13,14 +13,13 @@ export class AuthenticationComponent implements OnInit {
   loginPassword: string = ''
 
   constructor(
-    public auth: AuthService,
-    public router: Router
+    private auth: AuthService
   ) { }
 
   ngOnInit(): void {
   }
 
-  login() {
+  public login() {
     const body = { username: this.loginUsername, password: this.loginPassword }
 
     console.log(body)

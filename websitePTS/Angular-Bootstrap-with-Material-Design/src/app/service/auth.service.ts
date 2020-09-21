@@ -26,6 +26,7 @@ export class AuthService {
 
   public logout() {
     localStorage.removeItem('token')
+    this.router.navigate(['login'])
   }
 
   /* Aufrufe mit Token
