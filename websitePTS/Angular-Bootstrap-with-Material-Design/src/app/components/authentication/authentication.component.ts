@@ -9,7 +9,7 @@ import { AuthService } from '../../service/auth.service';
 })
 export class AuthenticationComponent implements OnInit {
 
-  loginUsername: string = ''
+  loginEmail: string = ''
   loginPassword: string = ''
 
   constructor(
@@ -20,7 +20,7 @@ export class AuthenticationComponent implements OnInit {
   }
 
   public login() {
-    const body = { username: this.loginUsername, password: this.loginPassword }
+    const body = { username: this.loginEmail, password: this.loginPassword }
 
     console.log(body)
 
