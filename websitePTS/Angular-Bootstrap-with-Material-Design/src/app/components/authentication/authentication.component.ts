@@ -9,8 +9,8 @@ import { AuthService } from '../../service/auth.service';
 })
 export class AuthenticationComponent implements OnInit {
 
-  loginUsername: string = "Jakob"
-  loginPassword: string = "testUser"
+  loginUsername: string = ''
+  loginPassword: string = ''
 
   constructor(
     public auth: AuthService,
@@ -23,11 +23,9 @@ export class AuthenticationComponent implements OnInit {
   login() {
     const body = { username: this.loginUsername, password: this.loginPassword }
 
-    console.log(this.auth.login(body))
-  }
+    console.log(body)
 
-  nav(bool) {
-    this.router.navigate['home']
+    this.auth.login(body)
   }
 
 }

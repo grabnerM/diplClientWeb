@@ -10,8 +10,8 @@ const baseUrl = 'http://localhost:8080/'
 export class AuthService {
 
   constructor(
-    public http: HttpClient,
-    public router: Router
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   public login(body) {
@@ -19,9 +19,13 @@ export class AuthService {
       if ( true ) {
         localStorage.setItem('token', result)
         console.log(result)
-        this.router.navigate['home']
+        this.router.navigate(['home'])
       } 
     })
+  }
+
+  public logout() {
+    localStorage.removeItem('token')
   }
 
   /* Aufrufe mit Token
