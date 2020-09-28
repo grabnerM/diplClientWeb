@@ -16,7 +16,7 @@ export class AuthService {
 
   public login(body) {
     this.http.post(baseUrl + 'jwt', body, { responseType: 'text' }).subscribe( result => {
-      if ( true ) {
+      if ( result != 'false' ) {
         localStorage.setItem('token', result)
         console.log(result)
         this.router.navigate(['home'])

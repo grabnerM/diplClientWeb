@@ -1,6 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { map, tileLayer } from 'leaflet';
+import { map, tileLayer, marker } from 'leaflet';
 import { AuthService } from '../../service/auth.service';
+import { HttpService } from '../../service/http.service';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,11 @@ import { AuthService } from '../../service/auth.service';
 export class HomeComponent implements AfterViewInit {
 
   private map: any
+  private locations: any
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private httpService: HttpService
   ) { }
   
   ngAfterViewInit(): void {
@@ -30,6 +33,18 @@ export class HomeComponent implements AfterViewInit {
     });
 
     tiles.addTo(this.map);
+  }
+
+  public getLocations() {
+    this.locations = this.httpService.getLocations()
+
+    this.setLocations()
+  }
+
+  private setLocations() {
+    for (let mark of this.locations) {
+      marker(mark).addTo(this.map)
+    }
   }
 
   public logOut() {
