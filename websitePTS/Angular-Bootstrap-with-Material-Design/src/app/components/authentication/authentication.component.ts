@@ -13,7 +13,8 @@ export class AuthenticationComponent implements OnInit {
   loginPassword: string = ''
 
   constructor(
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -22,9 +23,13 @@ export class AuthenticationComponent implements OnInit {
   public login() {
     const body = { username: this.loginEmail, password: this.loginPassword }
 
-    console.log(body)
-
-    this.auth.login(body)
+    this.auth.login(body).subscribe( result => {
+      if ( result != 'false' ) {
+        localStorage.setItem('token', result)
+        console.log(result)
+        this.router.navigate(['home'])
+      } 
+    })
   }
 
 }

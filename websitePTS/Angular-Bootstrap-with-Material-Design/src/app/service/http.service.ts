@@ -15,6 +15,12 @@ export class HttpService {
   public getLocations() {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
 
-    return this.http.get(baseUrl + 'webAppController', {headers}).subscribe()
+    return this.http.get(baseUrl + 'webAppController/getLocations', {headers})
+  }
+
+  public getRoute(id) {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+
+    return this.http.get(baseUrl + 'webAppController/getRoute/' + id, {headers})
   }
 }

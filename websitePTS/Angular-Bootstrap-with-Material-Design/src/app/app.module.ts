@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { FormsModule } from '@angular/forms';
+import { SenderComponent } from './components/sender/sender.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    SenderComponent
   ],
   imports: [
     BrowserModule,

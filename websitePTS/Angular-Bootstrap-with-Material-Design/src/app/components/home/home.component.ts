@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { map, tileLayer, marker } from 'leaflet';
+import { Sender } from '../../class/sender';
 import { AuthService } from '../../service/auth.service';
 import { HttpService } from '../../service/http.service';
 
@@ -12,20 +13,28 @@ export class HomeComponent implements AfterViewInit {
 
   private map: any
   private locations: any
+  private currentLocation: any
+  public senders: Array<Sender>
 
-  constructor(
+  constructor (
     private authService: AuthService,
     private httpService: HttpService
   ) { }
   
   ngAfterViewInit(): void {
+    this.getCurrentLocation()
     this.initMap()
+  }
+
+  private getCurrentLocation() {
+    /*this.senders.push(0, 'Jakob', 'Hocheneder')
+    this.senders.push(1, 'Maximilian', 'Grabner')*/
   }
 
   private initMap(): void {
     this.map = map('map', {
       center: [ 48.16667, 14.03333 ],
-      zoom: 3
+      zoom: 10
     });
     const tiles = tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
@@ -36,7 +45,9 @@ export class HomeComponent implements AfterViewInit {
   }
 
   public getLocations() {
-    this.locations = this.httpService.getLocations()
+    this.httpService.getLocations().subscribe( locations => {
+      this.locations = locations
+    })
 
     this.setLocations()
   }

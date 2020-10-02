@@ -15,13 +15,7 @@ export class AuthService {
   ) { }
 
   public login(body) {
-    this.http.post(baseUrl + 'jwt', body, { responseType: 'text' }).subscribe( result => {
-      if ( result != 'false' ) {
-        localStorage.setItem('token', result)
-        console.log(result)
-        this.router.navigate(['home'])
-      } 
-    })
+    return this.http.post(baseUrl + 'jwt', body, { responseType: 'text' })
   }
 
   public logout() {
