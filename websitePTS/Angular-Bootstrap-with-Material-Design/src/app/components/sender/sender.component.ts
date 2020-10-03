@@ -10,7 +10,7 @@ import { HttpService } from '../../service/http.service';
 export class SenderComponent implements OnInit {
 
   @Input()
-  private sender: Sender
+  public sender: Sender
 
   private visibility: boolean
 
@@ -19,6 +19,7 @@ export class SenderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.sender)
   }
 
 }

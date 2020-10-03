@@ -19,9 +19,9 @@ import { SenderComponent } from './components/sender/sender.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [],

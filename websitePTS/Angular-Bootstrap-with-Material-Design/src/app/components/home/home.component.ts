@@ -14,7 +14,7 @@ export class HomeComponent implements AfterViewInit {
   private map: any
   private locations: any
   private currentLocation: any
-  public senders: Array<Sender>
+  public senders: Sender[] = []
 
   constructor (
     private authService: AuthService,
@@ -27,8 +27,8 @@ export class HomeComponent implements AfterViewInit {
   }
 
   private getCurrentLocation() {
-    /*this.senders.push(0, 'Jakob', 'Hocheneder')
-    this.senders.push(1, 'Maximilian', 'Grabner')*/
+    this.senders.push(new Sender(0, 'Jakob', 'Hocheneder'))
+    this.senders.push(new Sender(1, 'Maximilian', 'Grabner'))
   }
 
   private initMap(): void {
