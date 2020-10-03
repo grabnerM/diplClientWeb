@@ -57,11 +57,197 @@
             </mdb-card-title>
 
             <!--Text-->
-            <mdb-card-text>
+            <mdb-card-text id="registerText">
                 New Account
             </mdb-card-text>
 
-            <a href="#" mdbBtn color="primary" mdbWavesEffect>Button</a>
+            <form>
+                <div class="align-items-center">
+                    <!--Company Name-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Company</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="building"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" placeholder="Company">
+                        </div>
+                    </div>
+
+                    <!--Vehicle-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Vehicle</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="car"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" placeholder="Vehicle">
+                        </div>
+                    </div>
+
+                    <!--Username-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="user"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" placeholder="Username">
+                        </div>
+                    </div>
+
+                    <!--Password-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Password</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="lock"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="password" class="form-control py-0" placeholder="Password">
+                        </div>
+                    </div>
+
+                    <!--Repeat Password-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Repeat password</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="lock"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="password" class="form-control py-0" placeholder="Repeat password">
+                        </div>
+                    </div>
+
+                    <!--Firstname-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Firstname</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="user"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" placeholder="Firstname">
+                        </div>
+                    </div>
+
+                    <!--Lastname-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Lastname</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="user"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" placeholder="Lastname">
+                        </div>
+                    </div>
+
+                    <!--Sex-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Sex</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="transgender"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" placeholder="Sex">
+                        </div>
+                    </div>
+
+                    <!--E-Mail-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Email Adress</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="at"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" placeholder="E-Mail">
+                        </div>
+                    </div>
+
+                    <!--Phone number-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Phone number</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="phone"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" placeholder="Phone number">
+                        </div>
+                    </div>
+
+                    <!--Photo-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Photo</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="camera"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" placeholder="Photo">
+                        </div>
+                    </div>
+
+                    <!--Zip-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Zip-Code</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="envelope"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" placeholder="Zip-Code">
+                        </div>
+                    </div>
+
+                    <!--Street-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Street</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="home"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" placeholder="Street">
+                        </div>
+                    </div>
+
+                    <!--Housenumber-->
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Housenumber</label>
+                        <div class="input-group mb-2 login-inputs">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <mdb-icon fas icon="home"></mdb-icon>
+                                </div>
+                            </div>
+                            <input mdbInput type="text" class="form-control py-0" placeholder="Housenumber">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="auth-button" type="button" mdbBtn color="primary" (click)="login()" mdbWavesEffect>Sign up</button>
+            </form>
         </mdb-card-body>
     </mdb-card>
 </div>
