@@ -1,4 +1,4 @@
-html {
+html, body {
     width: 100%;
     height: 100%;
 }
@@ -6,7 +6,7 @@ html {
 .auth {
     margin: auto;
     width: 25%;
-    height: 25%;
+    height: 100%;
 }
 
 #register {
@@ -19,7 +19,7 @@ html {
 }
 
 .login-inputs {
-    width: 40%;
+    width: 100%;
 }
 
 .auth-form {
@@ -28,4 +28,15 @@ html {
 
 .auth-button {
     margin-left: 1.5%;
+}
+
+#register, #login, .card-group {
+    height: 100vh;
+}
+
+mdb-card-body, form {
+    display: flex;
+    flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

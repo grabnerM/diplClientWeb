@@ -15,35 +15,31 @@
                 </mdb-card-text>
             </div>
 
-            <form>
-                <div class="align-items-center">
-                    <div class="col-auto">
-                        <label class="sr-only" for="inlineFormInputGroup">Email Adress</label>
-                        <div class="input-group mb-2 login-inputs">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <mdb-icon fas icon="at"></mdb-icon>
-                                </div>
-                            </div>
-                            <input mdbInput type="text" class="form-control py-0" placeholder="E-Mail" [(ngModel)]="loginEmail" [ngModelOptions]="{standalone: true}">
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInputGroup">Email Adress</label>
+                <div class="input-group mb-2 login-inputs">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <mdb-icon fas icon="at"></mdb-icon>
                         </div>
                     </div>
-
-                    <div class="col-auto">
-                        <label class="sr-only" for="inlineFormInputGroup">Password</label>
-                        <div class="input-group mb-2 login-inputs">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <mdb-icon fas icon="lock"></mdb-icon>
-                                </div>
-                            </div>
-                            <input mdbInput type="password" class="form-control py-0" placeholder="Password" [(ngModel)]="loginPassword" [ngModelOptions]="{standalone: true}">
-                        </div>
-                    </div>
+                    <input mdbInput type="text" class="form-control py-0" placeholder="E-Mail" [(ngModel)]="loginEmail" [ngModelOptions]="{standalone: true}">
                 </div>
+            </div>
 
-                <button class="auth-button" type="button" mdbBtn color="primary" (click)="login()" mdbWavesEffect>Login</button>
-            </form>
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInputGroup">Password</label>
+                <div class="input-group mb-2 login-inputs">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <mdb-icon fas icon="lock"></mdb-icon>
+                        </div>
+                    </div>
+                    <input mdbInput type="password" class="form-control py-0" placeholder="Password" [(ngModel)]="loginPassword" [ngModelOptions]="{standalone: true}">
+                </div>
+            </div>
+
+            <button class="auth-button" type="button" mdbBtn color="primary" (click)="login()" mdbWavesEffect>Login</button>
         </mdb-card-body>
     </mdb-card>
 
