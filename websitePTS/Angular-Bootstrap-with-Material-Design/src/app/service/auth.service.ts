@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Receiver } from '../class/receiver';
 
 const baseUrl = 'http://localhost:8080/'
 
@@ -14,13 +15,24 @@ export class AuthService {
     private router: Router
   ) { }
 
+  private receiver: Receiver
+
   public login(body) {
-    return this.http.post(baseUrl + 'jwt', body, { responseType: 'text' })
+    return this.http.post(baseUrl + 'authenticate/receiverlogin', body, { responseType: 'text' })
   }
 
   public logout() {
     localStorage.removeItem('token')
     this.router.navigate(['login'])
+  }
+
+  public getUser() {
+    let token: string = localStorage.getItem('token')
+    
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token)
+    
+    console.log(headers)
+    return this.http.get<Receiver>(baseUrl + 'receiver/getUser', {headers})
   }
 
   /* Aufrufe mit Token

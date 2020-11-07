@@ -21,12 +21,15 @@ export class AuthenticationComponent implements OnInit {
   }
 
   public login() {
-    const body = { username: this.loginEmail, password: this.loginPassword }
+    console.log("login")
+
+    const body = { email: this.loginEmail, password: this.loginPassword }
 
     this.auth.login(body).subscribe( result => {
       if ( result != 'false' ) {
         localStorage.setItem('token', result)
         console.log(result)
+        console.log(localStorage.getItem('token'))
         this.router.navigate(['home'])
       } 
     })

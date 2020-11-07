@@ -16,14 +16,27 @@ export class HomeComponent implements AfterViewInit {
   private currentLocation: any
   public senders: Sender[] = []
 
+  public username = ""
+
   constructor (
-    private authService: AuthService,
+    private auth: AuthService,
     private httpService: HttpService
   ) { }
   
   ngAfterViewInit(): void {
     this.getCurrentLocation()
     this.initMap()
+    this.getUser()
+  }
+
+  private getUser(){
+    this.auth.getUser().subscribe(data =>{
+      if (data){
+        localStorage.setItem('userid', data.id + "")
+        this.username = data.username
+        console.log(data)
+      }
+    });
   }
 
   private getCurrentLocation() {
@@ -59,7 +72,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
   public logOut() {
-    this.authService.logout()
+    this.auth.logout()
   }
 
 }
