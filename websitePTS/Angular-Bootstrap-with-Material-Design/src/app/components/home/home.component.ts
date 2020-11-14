@@ -1,4 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { map, tileLayer, marker } from 'leaflet';
 import { Sender } from '../../class/sender';
 import { AuthService } from '../../service/auth.service';
@@ -11,6 +12,8 @@ import { HttpService } from '../../service/http.service';
 })
 export class HomeComponent implements AfterViewInit {
 
+  islogin: boolean = true
+
   private map: any
   private locations: any
   private currentLocation: any
@@ -20,28 +23,36 @@ export class HomeComponent implements AfterViewInit {
 
   constructor (
     private auth: AuthService,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private router: Router
   ) { }
   
   ngAfterViewInit(): void {
     this.getCurrentLocation()
     this.initMap()
     this.getUser()
+    console.log(this.router.url)
   }
 
   private getUser(){
     this.auth.getUser().subscribe(data =>{
       if (data){
-        localStorage.setItem('userid', data.id + "")
+        localStorage.setItem('userid', data.receiverid + "")
         this.username = data.username
         console.log(data)
+        console.log(localStorage.getItem('userid'))
       }
     });
   }
 
   private getCurrentLocation() {
-    this.senders.push(new Sender(0, 'Jakob', 'Hocheneder'))
-    this.senders.push(new Sender(1, 'Maximilian', 'Grabner'))
+    //this.senders.push(new Sender(0, 'Jakob', 'Hocheneder'))
+    //this.senders.push(new Sender(1, 'Maximilian', 'Grabner'))
+    this.httpService.getSenderForReceiver(localStorage.getItem('userid')).subscribe(data =>{
+      if (data){
+        this.senders = data;
+      }
+    })
   }
 
   private initMap(): void {
@@ -74,5 +85,4 @@ export class HomeComponent implements AfterViewInit {
   public logOut() {
     this.auth.logout()
   }
-
 }

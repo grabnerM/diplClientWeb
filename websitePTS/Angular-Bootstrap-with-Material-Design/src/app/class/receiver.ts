@@ -1,5 +1,5 @@
 export class Receiver {
-    id: number;
+    receiverid: number;
     name: string;
     veh: boolean;
     username: string;

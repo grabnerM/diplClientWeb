@@ -1,0 +1,31 @@
+<main class="text-center py-5" id="main">
+    <div class="jumbotron" id="routecontainer">
+        <h3 class="display-5">History of Routes</h3>
+        <div id="cardlist" *ngFor="let i of routes">
+            <div id="routecard">
+                <mdb-card>
+                    <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+                    <!--<div class="map-container">
+                        <div class="map-frame">
+                            <div id="map"></div>
+                        </div>
+                    </div>-->
+                    <a>
+                        <div class="mask"></div>
+                    </a>
+                    </div>
+                    <!--Card content-->
+                    <mdb-card-body>
+                    <!--Title-->
+                    <mdb-card-title>
+                        <h4>{{i.routeid}}, {{i.firstname}}, {{i.lastname}}</h4>
+                    </mdb-card-title>
+                
+                    <!--Text-->
+                    <mdb-card-text>From {{i.starttime}} to {{i.endtime}}</mdb-card-text>
+                    </mdb-card-body>
+                </mdb-card>
+            </div>
+        </div>
+    </div>
+</main>

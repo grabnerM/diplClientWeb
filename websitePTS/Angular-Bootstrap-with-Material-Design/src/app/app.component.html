@@ -1,2 +1,26 @@
+<header class="h-100" *ngIf="islogin()">
+    <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark white scrolling-navbar intro-fixed-nav" [containerInside]="false">
+        <mdb-navbar-brand>
+            <a class="logo navbar-brand text-dark" href="#"><strong>PTS</strong></a>
+        </mdb-navbar-brand>
+        <links>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active waves-light" mdbWavesEffect>
+                    <button mdbBtn type="button" color="link" id="loginDiv" routerLink="/home">Home<span class="sr-only">(current)</span></button>
+                </li>
+                <li class="nav-item waves-light" mdbWavesEffect>
+                    <button mdbBtn type="button" color="link" id="loginDiv" routerLink="/history">History</button>
+                </li>
+                <li class="nav-item waves-light" mdbWavesEffect>
+                    <button mdbBtn type="button" color="link" id="loginDiv">About</button>
+                </li>
+                <li class="nav-item waves-light" mdbWavesEffect>
+                    <button mdbBtn type="button" color="blue" class="blue lighten-4" id="loginDiv">Log Out</button>
+                </li>
+            </ul>
+        </links>
+    </mdb-navbar>
+</header>
+
 <router-outlet>
 </router-outlet>

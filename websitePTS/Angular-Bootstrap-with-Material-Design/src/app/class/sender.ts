@@ -1,8 +1,15 @@
 export class Sender {
-    constructor(
-        public id = 0,
-        public firstname = '',
-        public lastname = ''
-    ) {
-    }
+    senderid: number;
+    username: string;
+    password: string;
+    firstname: string;
+    lastname: string;
+    sex: string;
+    email: string;
+    number: string;
+    photo: Blob;
+    zip: string;
+    street: string;
+    housenr: string;
+    city: string;
 }

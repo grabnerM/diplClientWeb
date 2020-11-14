@@ -9,13 +9,15 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { FormsModule } from '@angular/forms';
 import { SenderComponent } from './components/sender/sender.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AuthenticationComponent,
-    SenderComponent
+    SenderComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { sha512 } from 'js-sha512';
 import { AuthService } from '../../service/auth.service';
 
 @Component({
@@ -12,6 +13,8 @@ export class AuthenticationComponent implements OnInit {
   loginEmail: string = ''
   loginPassword: string = ''
 
+  islogin: boolean = false
+
   constructor(
     private auth: AuthService,
     private router: Router
@@ -23,7 +26,7 @@ export class AuthenticationComponent implements OnInit {
   public login() {
     console.log("login")
 
-    const body = { email: this.loginEmail, password: this.loginPassword }
+    const body = { email: this.loginEmail, password: sha512(this.loginPassword) }
 
     this.auth.login(body).subscribe( result => {
       if ( result != 'false' ) {

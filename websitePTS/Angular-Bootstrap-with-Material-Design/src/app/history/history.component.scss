@@ -1,0 +1,45 @@
+#main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#routecontainer{
+    width: 90vw;
+    margin-top: 8vh;
+}
+
+#cardlist{
+    max-width: 88vw;
+    float: left;
+}
+
+#routecard{
+    margin: 20px;
+    width: 350px;
+}
+.map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    margin-top: 60px;
+    ;
+}
+
+.map-frame {
+    height: 100%;
+}
+
+#map {
+    height: 100%;
+}
+
+.view {
+    background-size: cover;
+    height: 100px;
+}
+
