@@ -1,0 +1,10 @@
+<main class="text-center py-5" id="main">
+    <div class="jumbotron" id="routecontainer">
+        <h3 class="display-5">History of Routes</h3>
+        <div id="cardlist" *ngFor="let route of routes">
+            <app-route-card [route]="route">
+
+            </app-route-card>
+        </div>
+    </div>
+</main>

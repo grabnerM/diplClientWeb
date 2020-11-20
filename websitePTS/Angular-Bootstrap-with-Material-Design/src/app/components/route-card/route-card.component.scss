@@ -1,0 +1,31 @@
+#routecard{
+    margin: 20px;
+    width: 20em;
+}
+
+.map {
+    height: 200px;
+}
+.bigmap {
+    height:82vh;
+}
+
+.view {
+    background-size: cover;
+    height: 200px;
+}
+
+.big{
+    border: 0;
+    background-color: white;
+    position: absolute;
+    top: 155px;
+    left: 0px;
+    padding: 5px;
+    z-index: 400;
+}
+.modal{
+    margin-left: 5vw;
+    margin-right: 5vw;
+    width: 90vw;
+}

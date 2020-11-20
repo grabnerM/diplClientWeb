@@ -1,5 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+<<<<<<< Updated upstream
+=======
+import { Routeposition } from '../class/routeposition';
+import { Sender } from '../class/sender';
+import { Senderroute } from '../class/senderroute';
+>>>>>>> Stashed changes
 
 const baseUrl = 'http://localhost:8080/'
 
@@ -21,6 +27,6 @@ export class HttpService {
   public getRoute(id) {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
 
-    return this.http.get(baseUrl + 'webAppController/getRoute/' + id, {headers})
+    return this.http.get<Routeposition[]>(baseUrl + 'receiver/getRouteById/' + id, {headers})
   }
 }
