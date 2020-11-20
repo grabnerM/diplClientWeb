@@ -1,6 +1,10 @@
 import { Component, AfterViewInit } from '@angular/core';
+<<<<<<< Updated upstream
+import { map, tileLayer, marker } from 'leaflet';
+=======
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
+>>>>>>> Stashed changes
 import { Sender } from '../../class/sender';
 import { AuthService } from '../../service/auth.service';
 import { HttpService } from '../../service/http.service';
@@ -12,9 +16,13 @@ import { HttpService } from '../../service/http.service';
 })
 export class HomeComponent implements AfterViewInit {
 
+<<<<<<< Updated upstream
+  private map: any
+=======
   islogin: boolean = true
 
   private map: L.Map
+>>>>>>> Stashed changes
   private locations: any
   private currentLocation: any
   public senders: Sender[] = []
