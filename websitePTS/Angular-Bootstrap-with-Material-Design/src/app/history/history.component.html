@@ -1,6 +1,7 @@
 <main class="text-center py-5" id="main">
     <div class="jumbotron" id="routecontainer">
         <h3 class="display-5">History of Routes</h3>
+<<<<<<< HEAD
         <div id="cardlist" *ngFor="let i of routes">
             <div id="routecard">
                 <mdb-card>
@@ -26,6 +27,12 @@
                     </mdb-card-body>
                 </mdb-card>
             </div>
+=======
+        <div id="cardlist" *ngFor="let route of routes">
+            <app-route-card [route]="route">
+
+            </app-route-card>
+>>>>>>> b652ca6... History of Routes now has only 2 Markers and a make map big Funktion
         </div>
     </div>
 </main>
