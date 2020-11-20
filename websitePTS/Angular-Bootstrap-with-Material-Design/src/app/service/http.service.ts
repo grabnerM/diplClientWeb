@@ -1,16 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
-import { Sender } from '../class/sender';
-import { Senderroute } from '../class/senderroute';
-=======
-<<<<<<< Updated upstream
-=======
 import { Routeposition } from '../class/routeposition';
 import { Sender } from '../class/sender';
 import { Senderroute } from '../class/senderroute';
->>>>>>> Stashed changes
->>>>>>> b652ca6... History of Routes now has only 2 Markers and a make map big Funktion
 
 const baseUrl = 'http://localhost:8080/'
 

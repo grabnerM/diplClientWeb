@@ -1,14 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
-<<<<<<< HEAD
 import { Router } from '@angular/router';
-=======
-<<<<<<< Updated upstream
->>>>>>> b652ca6... History of Routes now has only 2 Markers and a make map big Funktion
 import { map, tileLayer, marker } from 'leaflet';
-=======
-import { Router } from '@angular/router';
 import * as L from 'leaflet';
->>>>>>> Stashed changes
 import { Sender } from '../../class/sender';
 import { AuthService } from '../../service/auth.service';
 import { HttpService } from '../../service/http.service';
@@ -20,18 +13,8 @@ import { HttpService } from '../../service/http.service';
 })
 export class HomeComponent implements AfterViewInit {
 
-<<<<<<< HEAD
-  islogin: boolean = true
-
-=======
-<<<<<<< Updated upstream
->>>>>>> b652ca6... History of Routes now has only 2 Markers and a make map big Funktion
-  private map: any
-=======
-  islogin: boolean = true
 
   private map: L.Map
->>>>>>> Stashed changes
   private locations: any
   private currentLocation: any
   public senders: Sender[] = []
