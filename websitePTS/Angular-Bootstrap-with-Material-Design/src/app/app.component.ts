@@ -20,4 +20,9 @@ export class AppComponent {
     }
     return true;
   }
+
+  logout(){
+    localStorage.setItem('token', null)
+    this.router.navigate(['login'])
+  }
 }

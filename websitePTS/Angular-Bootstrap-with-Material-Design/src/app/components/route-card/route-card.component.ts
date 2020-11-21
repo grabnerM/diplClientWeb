@@ -27,23 +27,27 @@ export class RouteCardComponent implements AfterViewInit, OnInit {
 
   positions = []
 
+
   constructor(private http: HttpService) {
     
   }
   ngOnInit(): void {
     this.bigmapid = 'big'+this.route.routeid
+    this.starttime = new Date(this.route.starttime).toUTCString().slice(0, -3)
+    this.endtime = new Date(this.route.endtime).toUTCString().slice(0, -3)
   }
 
   ngAfterViewInit(): void {
-    this.starttime = new Date(this.route.starttime).toUTCString().slice(0, -3)
-    this.endtime = new Date(this.route.endtime).toUTCString().slice(0, -3)
     this.initMap()
     this.getRoute()
     
+    
+  }
+
+  bigmapinit(){
     this.initMapBig()
     this.getRouteBig()
   }
-
   
 
   private initMap(): void {
@@ -73,6 +77,7 @@ export class RouteCardComponent implements AfterViewInit, OnInit {
   private getRoute(): void{
     this.http.getRoute(this.route.routeid).subscribe(data=>{
       this.routepositions = data
+      this.positions = []
       for(var i = 0; i<this.routepositions.length; i++){
         this.positions.push(L.latLng(this.routepositions[i].lat, this.routepositions[i].lng))
       }
@@ -84,9 +89,19 @@ export class RouteCardComponent implements AfterViewInit, OnInit {
           addWaypoints: true,
           createMarker: function(j, waypoint) {
             if (j == 0) {
-              return L.marker(waypoint.latLng, {draggable: false}).bindPopup('<p>Start</p>')
+              return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
+                iconSize: [ 25, 41 ],
+                iconAnchor: [ 13, 41 ],
+                iconUrl: 'assets/marker-icon.png',
+                shadowUrl: 'assets/marker-shadow.png'
+              })}).bindPopup('<p>Start</p>')
             } else if (j+1 == l) {
-              return L.marker(waypoint.latLng, {draggable: false}).bindPopup('<p>End</p>')
+              return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
+                iconSize: [ 25, 41 ],
+                iconAnchor: [ 13, 41 ],
+                iconUrl: 'assets/marker-icon.png',
+                shadowUrl: 'assets/marker-shadow.png'
+              })}).bindPopup('<p>End</p>')
             }
           }
         })
@@ -99,6 +114,7 @@ export class RouteCardComponent implements AfterViewInit, OnInit {
   private getRouteBig(): void{
     this.http.getRoute(this.route.routeid).subscribe(data=>{
       this.routepositions = data
+      this.positions = []
       for(var i = 0; i<this.routepositions.length; i++){
         this.positions.push(L.latLng(this.routepositions[i].lat, this.routepositions[i].lng))
       }
@@ -110,10 +126,27 @@ export class RouteCardComponent implements AfterViewInit, OnInit {
           addWaypoints: true,
           createMarker: function(j, waypoint) {
             if (j == 0) {
-              return L.marker(waypoint.latLng, {draggable: false}).bindPopup('<p>Start</p>')
+              return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
+                iconSize: [ 25, 41 ],
+                iconAnchor: [ 13, 41 ],
+                iconUrl: 'assets/marker-icon.png',
+                shadowUrl: 'assets/marker-shadow.png'
+              })}).bindPopup('<p>Start</p>')
             } else if (j+1 == lb) {
-              return L.marker(waypoint.latLng, {draggable: false}).bindPopup('<p>End</p>')
-            } 
+              return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
+                iconSize: [ 25, 41 ],
+                iconAnchor: [ 13, 41 ],
+                iconUrl: 'assets/marker-icon.png',
+                shadowUrl: 'assets/marker-shadow.png'
+              })}).bindPopup('<p>End</p>')
+            } else{
+              return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
+                iconSize: [ 25, 41 ],
+                iconAnchor: [ 13, 41 ],
+                iconUrl: 'assets/marker-icon.png',
+                shadowUrl: 'assets/marker-shadow.png'
+              })})
+            }
           }
         })
     }).addTo(this.bigmap);

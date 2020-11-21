@@ -31,7 +31,6 @@ export class HomeComponent implements AfterViewInit {
     this.getCurrentLocation()
     this.initMap()
     this.getUser()
-    console.log(this.router.url)
   }
 
   private getUser(){
@@ -39,8 +38,6 @@ export class HomeComponent implements AfterViewInit {
       if (data){
         localStorage.setItem('userid', data.receiverid + "")
         this.username = data.username
-        console.log(data)
-        console.log(localStorage.getItem('userid'))
       }
     });
   }
@@ -67,7 +64,12 @@ export class HomeComponent implements AfterViewInit {
 
    // var marker = new L.Marker(new L.LatLng(51.5, -0.09));
 
-    var mymarker = L.marker([48.16667, 14.03333], {draggable: true}).addTo(this.map);
+    var mymarker = L.marker([48.16667, 14.03333], {draggable: true, icon: L.icon({
+      iconSize: [ 25, 41 ],
+      iconAnchor: [ 13, 41 ],
+      iconUrl: 'assets/marker-icon.png',
+      shadowUrl: 'assets/marker-shadow.png'
+    })}).addTo(this.map);
 
     /*L.popup().setLatLng([48.16680, 14.03333])
     .setContent('<p>Hello world!<br />This is a nice popup.</p>')

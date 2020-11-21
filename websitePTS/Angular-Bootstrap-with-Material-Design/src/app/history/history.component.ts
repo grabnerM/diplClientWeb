@@ -22,7 +22,6 @@ export class HistoryComponent implements AfterViewInit {
 
     this.http.findOldRoutes(localStorage.getItem('userid')).subscribe(data=>{
       this.routes = data;
-      console.log(data)
     })
     
   }

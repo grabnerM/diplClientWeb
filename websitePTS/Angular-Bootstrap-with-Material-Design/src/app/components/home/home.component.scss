@@ -1,33 +1,18 @@
-.map-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    margin-top: 60px;
-}
-
-.map-frame {
-    height: 100%;
+#body{
+    display: flex;
+    justify-content: center;
+    align-items: row;
+    margin-top: 7vh;
 }
 
 #map {
-    height: 100%;
+    width: 80vw;
+    height: 93vh;;
 }
 
-.view {
-    background-size: cover;
-    height: 100vh;
-}
 
-#senderlist {
-    z-index: 10;
-    position: absolute;
-    margin-top: 100px;
-    margin-left: -350px;
-    width: 250px;
-    height: 700px;
+#left {
     background-color: white;
+    width: 20vw;
 }
 

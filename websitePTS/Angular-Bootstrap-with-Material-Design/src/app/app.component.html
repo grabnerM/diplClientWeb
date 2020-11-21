@@ -1,21 +1,21 @@
 <header class="h-100" *ngIf="islogin()">
-    <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark white scrolling-navbar intro-fixed-nav" [containerInside]="false">
+    <mdb-navbar SideClass="navbar fixed-top navbar-expand-sm navbar-dark white scrolling-navbar" [containerInside]="false">
         <mdb-navbar-brand>
             <a class="logo navbar-brand text-dark" href="#"><strong>PTS</strong></a>
         </mdb-navbar-brand>
         <links>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active waves-light" mdbWavesEffect>
-                    <button mdbBtn type="button" color="link" id="loginDiv" routerLink="/home">Home<span class="sr-only">(current)</span></button>
+                    <a class="nav-link waves-light" mdbWavesEffect id="loginDiv" routerLink="/home">Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item waves-light" mdbWavesEffect>
-                    <button mdbBtn type="button" color="link" id="loginDiv" routerLink="/history">History</button>
+                    <a class="nav-link waves-light" mdbWavesEffect id="loginDiv" routerLink="/history">History</a>
                 </li>
                 <li class="nav-item waves-light" mdbWavesEffect>
-                    <button mdbBtn type="button" color="link" id="loginDiv">About</button>
+                    <a class="nav-link waves-light" mdbWavesEffect id="loginDiv">About</a>
                 </li>
                 <li class="nav-item waves-light" mdbWavesEffect>
-                    <button mdbBtn type="button" color="blue" class="blue lighten-4" id="loginDiv">Log Out</button>
+                    <a class="nav-link waves-light blue lighten-4" mdbWavesEffect id="logout" (click)="logout()">Log Out</a>
                 </li>
             </ul>
         </links>

@@ -9,6 +9,16 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "assets":
+    [
+      "src/favicon.ico",
+      "src/assets",
+      {
+          "glob": "**/*",
+          "input": "node_modules/leaflet/dist/images/",
+          "output": "./assets/"
+      }
+    ],
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.0.7",
