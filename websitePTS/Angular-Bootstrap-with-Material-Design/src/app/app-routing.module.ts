@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AboutComponent } from './components/about/about.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -23,6 +24,16 @@ const routes: Routes = [
   {
     path: 'history',
     component: HistoryComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'about/:token',
+    component: AboutComponent,
     canActivate: [AuthGuard]
   }
 ];

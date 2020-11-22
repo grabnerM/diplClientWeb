@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { SenderComponent } from './components/sender/sender.component';
 import { HistoryComponent } from './history/history.component';
 import { RouteCardComponent } from './components/route-card/route-card.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RouteCardComponent } from './components/route-card/route-card.component
     AuthenticationComponent,
     SenderComponent,
     HistoryComponent,
-    RouteCardComponent
+    RouteCardComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

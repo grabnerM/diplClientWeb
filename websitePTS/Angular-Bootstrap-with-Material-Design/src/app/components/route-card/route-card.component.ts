@@ -10,7 +10,7 @@ import { HttpService } from 'src/app/service/http.service';
   templateUrl: './route-card.component.html',
   styleUrls: ['./route-card.component.scss']
 })
-export class RouteCardComponent implements AfterViewInit, OnInit {
+export class RouteCardComponent implements AfterViewInit, OnInit{
 
   private map: L.Map
   private bigmap: L.Map
@@ -40,13 +40,21 @@ export class RouteCardComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     this.initMap()
     this.getRoute()
-    
-    
   }
 
-  bigmapinit(){
+  delay(ms: number) {
+      return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
+  async bigmapinit(){
+    console.log("bigmapinit")
+
+    await this.delay(600);
+
     this.initMapBig()
     this.getRouteBig()
+
+    
   }
   
 
@@ -85,8 +93,8 @@ export class RouteCardComponent implements AfterViewInit, OnInit {
       L.Routing.control({
         routeWhileDragging: false,
         show: false,
+        addWaypoints: false,
         plan: L.Routing.plan(this.positions,{
-          addWaypoints: true,
           createMarker: function(j, waypoint) {
             if (j == 0) {
               return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
@@ -122,8 +130,8 @@ export class RouteCardComponent implements AfterViewInit, OnInit {
       L.Routing.control({
         routeWhileDragging: false,
         show: false,
+        addWaypoints: false,
         plan: L.Routing.plan(this.positions,{
-          addWaypoints: true,
           createMarker: function(j, waypoint) {
             if (j == 0) {
               return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({

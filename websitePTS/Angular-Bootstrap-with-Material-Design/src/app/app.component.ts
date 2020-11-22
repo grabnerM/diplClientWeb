@@ -8,10 +8,14 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
+  link = ""
+
   constructor(private router: Router) { }
 
   ngOnInit(){
     this.islogin()
+    this.link = 'localhost:4200/about/'+localStorage.getItem('token')
+
   }
 
   public islogin(){
@@ -19,6 +23,20 @@ export class AppComponent {
       return false;
     }
     return true;
+  }
+
+  copy(){
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = this.link;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
   }
 
   logout(){
