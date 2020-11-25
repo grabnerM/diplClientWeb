@@ -37,6 +37,21 @@ html, body {
 mdb-card-body, form {
     display: flex;
     flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginform, .md-form {
+    width: 30vw;
+}
+
+.md-form {
+    margin: -3vh;
+}
+.align-items-center {
+    margin-top: -5vh;
+}
+
+button {
+    margin-top: 5vh;
 }

@@ -9,14 +9,10 @@
                     <h3>Login</h3>
                 </mdb-card-title>
 
-                <!--Text-->
-                <mdb-card-text>
-                    Sign in
-                </mdb-card-text>
             </div>
-
-            <div class="col-auto">
-                <label class="sr-only" for="inlineFormInputGroup">Email Adress</label>
+            
+            <form id="loginform">
+                <!--<label class="sr-only" for="inlineFormInputGroup">Email Adress</label>
                 <div class="input-group mb-2 login-inputs">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -24,11 +20,14 @@
                         </div>
                     </div>
                     <input mdbInput type="text" class="form-control py-0" placeholder="E-Mail" [(ngModel)]="loginEmail" [ngModelOptions]="{standalone: true}">
+                </div>-->
+                <div class="md-form form-group mt-5">
+                    <mdb-icon fas icon="at" size="lg" class="prefix"></mdb-icon>
+                    <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="loginEmail" [ngModelOptions]="{standalone: true}">
+                    <label for="form1" class="">E-Mail</label>
                 </div>
-            </div>
 
-            <div class="col-auto">
-                <label class="sr-only" for="inlineFormInputGroup">Password</label>
+                <!--<label class="sr-only" for="inlineFormInputGroup">Password</label>
                 <div class="input-group mb-2 login-inputs">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -36,9 +35,13 @@
                         </div>
                     </div>
                     <input mdbInput type="password" class="form-control py-0" placeholder="Password" [(ngModel)]="loginPassword" [ngModelOptions]="{standalone: true}">
+                </div>-->
+                <div class="md-form form-group mt-5">
+                    <mdb-icon fas icon="lock" size="lg" class="prefix"></mdb-icon>
+                    <input mdbInput type="password" id="form2" class="form-control" [(ngModel)]="loginPassword" [ngModelOptions]="{standalone: true}">
+                    <label for="form2" class="">Password</label>
                 </div>
-            </div>
-
+            </form>
             <button class="auth-button" type="button" mdbBtn color="primary" (click)="login()" mdbWavesEffect>Login</button>
         </mdb-card-body>
     </mdb-card>
@@ -52,15 +55,11 @@
                 <h3>Sign up</h3>
             </mdb-card-title>
 
-            <!--Text-->
-            <mdb-card-text id="registerText">
-                New Account
-            </mdb-card-text>
 
             <form>
                 <div class="align-items-center">
                     <!--Company Name-->
-                    <div class="col-auto">
+                    <!--<div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Company</label>
                         <div class="input-group mb-2 login-inputs">
                             <div class="input-group-prepend">
@@ -70,10 +69,15 @@
                             </div>
                             <input mdbInput type="text" class="form-control py-0" placeholder="Company">
                         </div>
+                    </div>-->
+                    <div class="md-form form-group mt-5">
+                        <mdb-icon fas icon="building" size="lg" class="prefix"></mdb-icon>
+                        <input mdbInput type="text" id="form3" class="form-control">
+                        <label for="form3" class="">Company</label>
                     </div>
 
                     <!--Vehicle-->
-                    <div class="col-auto">
+                    <!--<div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Vehicle</label>
                         <div class="input-group mb-2 login-inputs">
                             <div class="input-group-prepend">
@@ -83,10 +87,15 @@
                             </div>
                             <input mdbInput type="text" class="form-control py-0" placeholder="Vehicle">
                         </div>
+                    </div>-->
+                    <div class="md-form form-group mt-5">
+                        <mdb-icon fas icon="car" size="lg" class="prefix"></mdb-icon>
+                        <input mdbInput type="text" id="form4" class="form-control">
+                        <label for="form4" class="">Vehicle</label>
                     </div>
 
                     <!--Username-->
-                    <div class="col-auto">
+                    <!--<div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Username</label>
                         <div class="input-group mb-2 login-inputs">
                             <div class="input-group-prepend">
@@ -96,10 +105,15 @@
                             </div>
                             <input mdbInput type="text" class="form-control py-0" placeholder="Username">
                         </div>
+                    </div>-->
+                    <div class="md-form form-group mt-5">
+                        <mdb-icon fas icon="user" size="lg" class="prefix"></mdb-icon>
+                        <input mdbInput type="text" id="form5" class="form-control">
+                        <label for="form5" class="">Username</label>
                     </div>
 
                     <!--Password-->
-                    <div class="col-auto">
+                    <!--<div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Password</label>
                         <div class="input-group mb-2 login-inputs">
                             <div class="input-group-prepend">
@@ -109,10 +123,15 @@
                             </div>
                             <input mdbInput type="password" class="form-control py-0" placeholder="Password">
                         </div>
+                    </div>-->
+                    <div class="md-form form-group mt-5">
+                        <mdb-icon fas icon="lock" size="lg" class="prefix"></mdb-icon>
+                        <input mdbInput type="password" id="form6" class="form-control">
+                        <label for="form6" class="">Password</label>
                     </div>
 
                     <!--Repeat Password-->
-                    <div class="col-auto">
+                    <!--<div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Repeat password</label>
                         <div class="input-group mb-2 login-inputs">
                             <div class="input-group-prepend">
@@ -122,10 +141,15 @@
                             </div>
                             <input mdbInput type="password" class="form-control py-0" placeholder="Repeat password">
                         </div>
+                    </div>-->
+                    <div class="md-form form-group mt-5">
+                        <mdb-icon fas icon="lock" size="lg" class="prefix"></mdb-icon>
+                        <input mdbInput type="password" id="form7" class="form-control">
+                        <label for="form7" class="">Repeat password</label>
                     </div>
 
                     <!--Firstname-->
-                    <div class="col-auto">
+                    <!--<div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Firstname</label>
                         <div class="input-group mb-2 login-inputs">
                             <div class="input-group-prepend">
@@ -135,10 +159,15 @@
                             </div>
                             <input mdbInput type="text" class="form-control py-0" placeholder="Firstname">
                         </div>
+                    </div>-->
+                    <div class="md-form form-group mt-5">
+                        <mdb-icon fas icon="user" size="lg" class="prefix"></mdb-icon>
+                        <input mdbInput type="text" id="form8" class="form-control">
+                        <label for="form8" class="">Firstname</label>
                     </div>
 
                     <!--Lastname-->
-                    <div class="col-auto">
+                    <!--<div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Lastname</label>
                         <div class="input-group mb-2 login-inputs">
                             <div class="input-group-prepend">
@@ -148,10 +177,15 @@
                             </div>
                             <input mdbInput type="text" class="form-control py-0" placeholder="Lastname">
                         </div>
+                    </div>-->
+                    <div class="md-form form-group mt-5">
+                        <mdb-icon fas icon="user" size="lg" class="prefix"></mdb-icon>
+                        <input mdbInput type="text" id="form9" class="form-control">
+                        <label for="form9" class="">Lastname</label>
                     </div>
 
                     <!--Sex-->
-                    <div class="col-auto">
+                    <!--<div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Sex</label>
                         <div class="input-group mb-2 login-inputs">
                             <div class="input-group-prepend">
@@ -161,10 +195,15 @@
                             </div>
                             <input mdbInput type="text" class="form-control py-0" placeholder="Sex">
                         </div>
+                    </div>-->
+                    <div class="md-form form-group mt-5">
+                        <mdb-icon fas icon="transgender" size="lg" class="prefix"></mdb-icon>
+                        <input mdbInput type="text" id="form10" class="form-control">
+                        <label for="form10" class="">Sex</label>
                     </div>
 
                     <!--E-Mail-->
-                    <div class="col-auto">
+                    <!--<div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Email Adress</label>
                         <div class="input-group mb-2 login-inputs">
                             <div class="input-group-prepend">
@@ -174,10 +213,15 @@
                             </div>
                             <input mdbInput type="text" class="form-control py-0" placeholder="E-Mail">
                         </div>
+                    </div>-->
+                    <div class="md-form form-group mt-5">
+                        <mdb-icon fas icon="at" size="lg" class="prefix"></mdb-icon>
+                        <input mdbInput type="text" id="form11" class="form-control">
+                        <label for="form11" class="">Email Adress</label>
                     </div>
 
                     <!--Phone number-->
-                    <div class="col-auto">
+                    <!--<div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Phone number</label>
                         <div class="input-group mb-2 login-inputs">
                             <div class="input-group-prepend">
@@ -187,9 +231,14 @@
                             </div>
                             <input mdbInput type="text" class="form-control py-0" placeholder="Phone number">
                         </div>
+                    </div>-->
+                    <div class="md-form form-group mt-5">
+                        <mdb-icon fas icon="phone" size="lg" class="prefix"></mdb-icon>
+                        <input mdbInput type="text" id="form12" class="form-control">
+                        <label for="form12" class="">Phone number</label>
                     </div>
 
-                    <!--Photo-->
+                    <!--Photo
                     <div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Photo</label>
                         <div class="input-group mb-2 login-inputs">
@@ -200,10 +249,10 @@
                             </div>
                             <input mdbInput type="text" class="form-control py-0" placeholder="Photo">
                         </div>
-                    </div>
+                    </div>-->
 
                     <!--Zip-->
-                    <div class="col-auto">
+                    <!--<div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Zip-Code</label>
                         <div class="input-group mb-2 login-inputs">
                             <div class="input-group-prepend">
@@ -213,10 +262,15 @@
                             </div>
                             <input mdbInput type="text" class="form-control py-0" placeholder="Zip-Code">
                         </div>
+                    </div>-->
+                    <div class="md-form form-group mt-5">
+                        <mdb-icon fas icon="envelope" size="lg" class="prefix"></mdb-icon>
+                        <input mdbInput type="text" id="form13" class="form-control">
+                        <label for="form13" class="">Zip-Code</label>
                     </div>
 
                     <!--Street-->
-                    <div class="col-auto">
+                    <!--<div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Street</label>
                         <div class="input-group mb-2 login-inputs">
                             <div class="input-group-prepend">
@@ -226,10 +280,15 @@
                             </div>
                             <input mdbInput type="text" class="form-control py-0" placeholder="Street">
                         </div>
+                    </div>-->
+                    <div class="md-form form-group mt-5">
+                        <mdb-icon fas icon="home" size="lg" class="prefix"></mdb-icon>
+                        <input mdbInput type="text" id="form14" class="form-control">
+                        <label for="form14" class="">Street</label>
                     </div>
 
                     <!--Housenumber-->
-                    <div class="col-auto">
+                    <!--<div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Housenumber</label>
                         <div class="input-group mb-2 login-inputs">
                             <div class="input-group-prepend">
@@ -239,6 +298,11 @@
                             </div>
                             <input mdbInput type="text" class="form-control py-0" placeholder="Housenumber">
                         </div>
+                    </div>-->
+                    <div class="md-form form-group mt-5">
+                        <mdb-icon fas icon="home" size="lg" class="prefix"></mdb-icon>
+                        <input mdbInput type="text" id="form15" class="form-control">
+                        <label for="form15" class="">Housenumber</label>
                     </div>
                 </div>
 
