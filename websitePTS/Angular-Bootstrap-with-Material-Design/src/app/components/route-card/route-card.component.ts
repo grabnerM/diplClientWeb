@@ -26,6 +26,7 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
   endtime: string = ""
 
   positions = []
+  osrm_url = 'http://195.128.100.64:5000/route/v1';
 
 
   constructor(private http: HttpService) {
@@ -93,6 +94,9 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
       L.Routing.control({
         routeWhileDragging: false,
         show: false,
+        router: new L.Routing.OSRMv1({
+          serviceUrl: this.osrm_url
+        }),
         addWaypoints: false,
         plan: L.Routing.plan(this.positions,{
           createMarker: function(j, waypoint) {
@@ -130,6 +134,9 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
       L.Routing.control({
         routeWhileDragging: false,
         show: false,
+        router: new L.Routing.OSRMv1({
+          serviceUrl: this.osrm_url
+        }),
         addWaypoints: false,
         plan: L.Routing.plan(this.positions,{
           createMarker: function(j, waypoint) {
