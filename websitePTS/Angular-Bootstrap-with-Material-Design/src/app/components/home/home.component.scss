@@ -1,18 +1,14 @@
-#body{
-    display: flex;
-    justify-content: center;
-    align-items: row;
-    margin-top: 7vh;
+html,
+body,
+#intro {
+    height: 100vh;
+    width: 99vw;
 }
 
-#map {
-    width: 80vw;
-    height: 93vh;;
+#intro {
+    background: url("../../../assets/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
-
-
-#left {
-    background-color: white;
-    width: 20vw;
-}
-

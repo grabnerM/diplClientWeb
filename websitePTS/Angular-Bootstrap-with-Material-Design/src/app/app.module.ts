@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
-import { FormsModule } from '@angular/forms';
 import { SenderComponent } from './components/sender/sender.component';
 import { HistoryComponent } from './history/history.component';
 import { RouteCardComponent } from './components/route-card/route-card.component';
 import { AboutComponent } from './components/about/about.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewTaskComponent } from './components/new-task/new-task.component';
+import { LiveComponent } from './components/live/live.component'
 
 @NgModule({
   declarations: [
@@ -21,13 +23,16 @@ import { AboutComponent } from './components/about/about.component';
     SenderComponent,
     HistoryComponent,
     RouteCardComponent,
-    AboutComponent
+    AboutComponent,
+    NewTaskComponent,
+    LiveComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [],

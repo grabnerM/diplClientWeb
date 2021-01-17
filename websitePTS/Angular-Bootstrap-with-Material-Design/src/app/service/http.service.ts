@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Routeposition } from '../class/routeposition';
 import { Sender } from '../class/sender';
 import { Senderroute } from '../class/senderroute';
+import { Task } from '../class/task';
 
 const baseUrl = 'http://localhost:8080/'
 
@@ -24,18 +25,24 @@ export class HttpService {
   public getRoute(id) {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
 
-    return this.http.get<Routeposition[]>(baseUrl + 'receiver/getRouteById/' + id, {headers})
+    return this.http.get<Routeposition[]>(baseUrl + 'receiver/getRouteById/', {headers})
   }
 
   public getSenderForReceiver(id){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
 
-    return this.http.get<Sender[]>(baseUrl+'receiver/getSenderForReceiver/'+id, {headers})
+    return this.http.get<Sender[]>(baseUrl+'receiver/getSenderForReceiver/', {headers})
   }
 
   public findOldRoutes(id){
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
 
-    return this.http.get<Senderroute[]>(baseUrl+'receiver/findOldRoutes/'+id, {headers});
+    return this.http.get<Senderroute[]>(baseUrl+'receiver/findOldRoutes/', {headers});
+  }
+
+  public createTask(task: Task){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
+    return this.http.post(baseUrl + 'receiver/createTask', task, {headers})
   }
 }

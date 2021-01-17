@@ -8,6 +8,9 @@
                 <li class="nav-item active waves-light" mdbWavesEffect>
                     <a class="nav-link waves-light" mdbWavesEffect id="loginDiv" routerLink="/home">Home<span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item active waves-light" mdbWavesEffect>
+                    <a class="nav-link waves-light" mdbWavesEffect id="loginDiv" routerLink="/newTask">New Task<span class="sr-only"></span></a>
+                </li>
                 <li class="nav-item waves-light" mdbWavesEffect>
                     <a class="nav-link waves-light" mdbWavesEffect id="loginDiv" routerLink="/history">History</a>
                 </li>
@@ -38,10 +41,8 @@
                     <div class="modal-body">
                         <div class="md-form form-sm">
                             <input type="text" id="form11" class="form-control" [(ngModel)]="link" #linkElement disabled>
-                            <label for="form11" class="disabled">Link:</label>
                             <button type="button" mdbBtn class="waves-light" (click)="copy()" mdbWavesEffect>Copy</button>
                         </div>
-                        
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button type="button" mdbBtn class="waves-light blue lighten-4" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>

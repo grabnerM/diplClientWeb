@@ -21,6 +21,10 @@ export class AuthService {
     return this.http.post(baseUrl + 'authenticate/receiverlogin', body, { responseType: 'text' })
   }
 
+  public register(body){
+    return this.http.post(baseUrl + "authenticate/createReceiver", body, { responseType: 'text'})
+  }
+
   public logout() {
     localStorage.removeItem('token')
     this.router.navigate(['login'])

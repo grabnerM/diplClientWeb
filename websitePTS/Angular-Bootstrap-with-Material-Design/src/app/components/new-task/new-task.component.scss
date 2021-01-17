@@ -1,0 +1,25 @@
+#body{
+    display: flex;
+    justify-content: center;
+    align-items: row;
+    margin-top: 7vh;
+}
+
+#map {
+    width: 70vw;
+    height: 93vh;;
+}
+
+
+#left {
+    background-color: white;
+    width: 30vw;
+}
+
+label{
+    margin-bottom: 15px;;
+}
+
+#descriptionDiv, #titleDiv {
+    width: 100%;
+}
