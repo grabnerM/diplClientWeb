@@ -2,12 +2,13 @@
     <div id="left">
         <ul class="list-group" id="senderlist">
             <li class="list-group-item d-flex justify-content-between blue lighten-4 align-items-center">
-                Sender von {{username}}: 
+                Offene Tasks von {{username}}: 
             </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let sender of senders, let i = index">
-                <app-sender [sender]="sender"></app-sender>
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let task of tasks" (click)="getRoute(task.taskid)">
+                {{task.title}} <div class="open" *ngIf="task.status == -1">Offen</div> <div class="progress" *ngIf="task.status == 0">In Bearbeitung</div>
             </li>
         </ul>
+        <button (click)="removeMarkers()">Remove</button>
     </div>
     <div id="right">
             <div id="map"></div>

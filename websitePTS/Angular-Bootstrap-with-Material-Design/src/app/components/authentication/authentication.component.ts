@@ -55,6 +55,7 @@ export class AuthenticationComponent implements OnInit {
     const body = { email: this.loginEmail, password: sha512(this.loginPassword) }
 
     this.auth.login(body).subscribe( result => {
+      console.log(result)
       if ( result != 'false' ) {
         localStorage.setItem('token', result)
         this.router.navigate(['home'])

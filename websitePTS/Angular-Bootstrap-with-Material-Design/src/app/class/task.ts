@@ -1,5 +1,5 @@
 export class Task{
-    id: number;
+    taskid: number;
     startlat: number;
     startlng: number;
     endlat: number;

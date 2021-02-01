@@ -5,18 +5,37 @@
                 Neuen Task erstellen: 
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center" >
-                <div class="md-form form-group mt-5" id="titleDiv">
+                <div class="md-form form-group mt-2" id="titleDiv">
                     <input mdbInput mdbValidate type="text" id="title" class="form-control" [(ngModel)]="title">
                     <label for="title" class="">Titel</label>
                 </div>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center" >
-                <div class="md-form form-group mt-5" id="descriptionDiv">
+                <div class="md-form form-group mt-2" id="descriptionDiv">
                     <textarea type="text" id="description" class="md-textarea md-textarea-auto form-control" mdbInput [(ngModel)]="description"></textarea>
                     <label for="description">Beschreibung</label>
                 </div>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center" >
+                <div class="md-form form-group mt-1 address">
+                    <input mdbInput type="text" id="addressStart" class="form-control" [(ngModel)]="addressStart">
+                    <label for="addressStart" class="">Start Addresse</label>
+                </div>
+                <div class="md-form form-group mt-3">
+                    <button class="auth-button addressSearch" type="button" mdbBtn color="light-blue" (click)="searchStart()" mdbWavesEffect>Suchen</button>
+                </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center" >
+                <div class="md-form form-group mt-1 address">
+                    <input mdbInput type="text" id="addressEnd" class="form-control" [(ngModel)]="addressEnd">
+                    <label for="addressEnd" class="">Ziel Addresse</label>
+                </div>
+                <div class="md-form form-group mt-3">
+                    <button class="auth-button addressSearch" type="button" mdbBtn color="light-blue" (click)="searchEnd()" mdbWavesEffect>Suchen</button>
+                </div>
+            </li>
+            <!--<li class="list-group-item d-flex justify-content-between align-items-center" >
+                
                 <div class="md-form form-group mt-5">
                     <input mdbInput mdbValidate type="text" id="startlat" class="form-control" [value]="getLat(0)">
                     <label for="startlat" class="">Start Latitude</label>
@@ -25,8 +44,8 @@
                     <input mdbInput mdbValidate type="number" id="startlng" class="form-control" [value]="getLng(0)">
                     <label for="startlng" class="">Start Longitude</label>
                 </div>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center" >
+            </li>-->
+            <!--<li class="list-group-item d-flex justify-content-between align-items-center" >
                 <div class="md-form form-group mt-5">
                     <input mdbInput type="text" id="endlat" class="form-control" [value]="getLat(1)"> 
                     <label for="endlat" class="">End Latitude</label>
@@ -35,7 +54,7 @@
                     <input mdbInput type="number" id="endlng" class="form-control" [value]="getLng(1)">
                     <label for="endlng" class="">End Longitude</label>
                 </div>
-            </li>
+            </li>-->
             <li class="list-group-item d-flex justify-content-between align-items-center" >
                 <button class="auth-button" type="button" mdbBtn color="primary" (click)="save()" mdbWavesEffect>Speichern</button>
             </li>

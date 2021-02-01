@@ -1,7 +1,11 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { formatDate } from '@angular/common';
+import { LOCALE_ID } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
-import { Sender } from 'src/app/class/sender';
+import 'leaflet.markercluster';
+import { Routeposition } from 'src/app/class/routeposition';
+import { Task } from 'src/app/class/task';
 import { AuthService } from 'src/app/service/auth.service';
 import { HttpService } from 'src/app/service/http.service';
 
@@ -15,38 +19,44 @@ export class LiveComponent implements AfterViewInit {
   private endpoint
 
   private map: L.Map
-  private locations: any
+  private locations: L.Marker[] = []
   private currentLocation: any
-  public senders: Sender[] = []
 
   public websocket: WebSocket;
   public wsUri: string;
 
   osrm_url = 'http://195.128.100.64:5000/route/v1';
 
-
   public username = ""
+
+  public tasks: Task[] = []
+
+  positions = []
+  routepositions: Routeposition[]
 
   constructor (
     private auth: AuthService,
     private httpService: HttpService,
-    private router: Router
+    private router: Router,
+    @Inject( LOCALE_ID ) private localID: string 
   ) { }
   
   ngAfterViewInit(): void {
-    this.getCurrentLocation()
+    this.getTasks()
     this.initMap()
     this.getUser()
+    this.getLocations()
 
-    this.wsUri = 'ws://localhost:3000/ws/todo/' + localStorage.getItem('userid');
+    this.wsUri = 'ws://localhost:3000/' + localStorage.getItem('userid');
     this.websocket = new WebSocket(this.wsUri);
     this.websocket.onopen = (evt) => console.log('Websocket Opened');
 
 
     this.websocket.onmessage = (evt) => {
       console.log(evt.data);
-      if (evt.data === 'Data changed'+localStorage.getItem('userid')) {
-        this.getCurrentLocation()
+      if (evt.data === 'Data changed '+localStorage.getItem('userid')) {
+        this.getTasks()
+        this.getLocations()
       }
     };
 
@@ -64,12 +74,44 @@ export class LiveComponent implements AfterViewInit {
     });
   }
 
-  private getCurrentLocation() {
-    this.httpService.getSenderForReceiver(localStorage.getItem('userid')).subscribe(data =>{
-      if (data){
-        this.senders = data;
+  private getTasks() {
+    this.httpService.getOpenTasks().subscribe(data => {
+      console.log(data)
+      this.tasks = data
+    })
+  }
+
+  public getLocations() {
+    this.httpService.getLocations().subscribe( data => {
+      this.removeMarkers()
+      for (let i = 0; i<data.length; i++){
+        let m = L.marker(L.latLng(data[i].lat, data[i].lng), {draggable: true, icon: L.icon({
+          iconSize: [ 25, 41 ],
+          iconAnchor: [ 13, 41 ],
+          iconUrl: 'assets/marker-icon.png',
+          shadowUrl: 'assets/marker-shadow.png'
+        })}).bindPopup('<p>'+data[i].username+'<br>'+data[i].title+'</p>')
+
+        this.locations.push(m)
+      }
+      for(let j = 0; j<this.locations.length; j++){
+        this.map.addLayer(this.locations[j])
       }
     })
+
+  }
+
+  public removeMarkers(){
+    for(let j = 0; j<this.locations.length; j++){
+      this.map.removeLayer(this.locations[j])
+    }
+    this.locations = []
+  }
+
+  private setLocations() {
+    /*for (let mark of this.locations) {
+      L.marker(mark).addTo(this.map)
+    }*/
   }
 
   private initMap(): void {
@@ -90,7 +132,7 @@ export class LiveComponent implements AfterViewInit {
 
     tiles.addTo(this.map);
 
-    L.Routing.control({
+    /*L.Routing.control({
       router: new L.Routing.OSRMv1({
         serviceUrl: this.osrm_url
       }),
@@ -120,21 +162,59 @@ export class LiveComponent implements AfterViewInit {
           }
         }
       })
-    }).addTo(this.map);
+    }).addTo(this.map);*/
   }
 
-  public getLocations() {
-    this.httpService.getLocations().subscribe( locations => {
-      this.locations = locations
+  public getRoute(id: number){
+      this.httpService.getRouteByTask(id).subscribe(data=>{
+
+        this.removeMarkers();
+
+        console.log(data)
+
+        this.routepositions = data
+        this.positions = []
+        for(var i = 0; i<this.routepositions.length; i++){
+          this.positions.push(L.latLng(this.routepositions[i].lat, this.routepositions[i].lng))
+        }
+        let lid = this.localID
+        let times = data
+        let lb = this.positions.length
+        L.Routing.control({
+          routeWhileDragging: false,
+          show: false,
+          router: new L.Routing.OSRMv1({
+            serviceUrl: this.osrm_url
+          }),
+          addWaypoints: false,
+          plan: L.Routing.plan(this.positions,{
+            createMarker: function(j, waypoint) {
+              if (j == 0) {
+                return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
+                  iconSize: [ 25, 41 ],
+                  iconAnchor: [ 13, 41 ],
+                  iconUrl: 'assets/marker-icon.png',
+                  shadowUrl: 'assets/marker-shadow.png'
+                })}).bindPopup('<p>Start</p>')
+              } else if (j+1 == lb) {
+                return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
+                  iconSize: [ 25, 41 ],
+                  iconAnchor: [ 13, 41 ],
+                  iconUrl: 'assets/marker-icon.png',
+                  shadowUrl: 'assets/marker-shadow.png'
+                })}).bindPopup('<p>End</p>')
+              } else{
+                return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
+                  iconSize: [ 25, 41 ],
+                  iconAnchor: [ 13, 41 ],
+                  iconUrl: 'assets/marker-icon.png',
+                  shadowUrl: 'assets/marker-shadow.png'
+                })}).bindPopup("<p>"+formatDate(times[j].time, 'dd.MM.yyyy HH:mm:ss', lid)+"</p>")
+              }
+            }
+          })
+      }).addTo(this.map);
     })
-
-    this.setLocations()
-  }
-
-  private setLocations() {
-    for (let mark of this.locations) {
-      L.marker(mark).addTo(this.map)
-    }
   }
 
   public logOut() {

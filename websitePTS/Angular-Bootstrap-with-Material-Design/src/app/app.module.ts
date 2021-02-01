@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
-import { SenderComponent } from './components/sender/sender.component';
 import { HistoryComponent } from './history/history.component';
 import { RouteCardComponent } from './components/route-card/route-card.component';
 import { AboutComponent } from './components/about/about.component';
@@ -20,7 +19,6 @@ import { LiveComponent } from './components/live/live.component'
     AppComponent,
     HomeComponent,
     AuthenticationComponent,
-    SenderComponent,
     HistoryComponent,
     RouteCardComponent,
     AboutComponent,

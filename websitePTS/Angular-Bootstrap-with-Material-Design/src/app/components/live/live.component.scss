@@ -6,13 +6,21 @@
 }
 
 #map {
-    width: 80vw;
+    width: 70vw;
     height: 93vh;;
 }
 
 
 #left {
     background-color: white;
-    width: 20vw;
+    width: 30vw;
+}
+
+.open {
+    color: red;
+}
+
+.progress {
+    color: green;
 }
 

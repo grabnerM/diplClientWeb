@@ -21,6 +21,9 @@ export class NewTaskComponent implements AfterContentInit{
   public startpoint = L.latLng(48.138435, 14.004268)
   public endpoint = L.latLng(48.155429, 14.036327)
 
+  public addressStart: string;
+  public addressEnd: string;
+
   private route: L.Routing.Control
 
   private map: L.Map
@@ -74,11 +77,11 @@ export class NewTaskComponent implements AfterContentInit{
   }
 
   private getCurrentLocation() {
-    this.httpService.getSenderForReceiver(localStorage.getItem('userid')).subscribe(data =>{
+    /*this.httpService.getSenderForReceiver(localStorage.getItem('userid')).subscribe(data =>{
       if (data){
         this.senders = data;
       }
-    })
+    })*/
   }
 
   private initMap(): void {
@@ -185,6 +188,34 @@ export class NewTaskComponent implements AfterContentInit{
     }
 
     return 0
+  }
+
+  public searchStart(){
+    this.httpService.getLatLngFromAddress(this.addressStart).subscribe(data => {
+      if(data[0]){
+        this.startpoint = L.latLng(+data[0].lat, +data[0].lon)
+
+        this.route.setWaypoints([this.startpoint, this.endpoint])
+
+      } else {
+        console.log("error")
+      }
+      
+    })
+  }
+
+  public searchEnd(){
+    this.httpService.getLatLngFromAddress(this.addressEnd).subscribe(data => {
+      if(data[0]){
+        this.endpoint = L.latLng(+data[0].lat, +data[0].lon)
+
+        this.route.setWaypoints([this.startpoint, this.endpoint])
+
+      } else {
+        console.log("error")
+      }
+      
+    })
   }
 
 }

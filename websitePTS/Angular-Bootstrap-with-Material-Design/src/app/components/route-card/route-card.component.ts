@@ -1,9 +1,13 @@
+import { DatePipe } from '@angular/common';
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { Routeposition } from 'src/app/class/routeposition';
 import { Senderroute } from 'src/app/class/senderroute';
 import { HttpService } from 'src/app/service/http.service';
+import { formatDate } from "@angular/common";
+import { LOCALE_ID } from "@angular/core";
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-route-card',
@@ -28,14 +32,17 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
   positions = []
   osrm_url = 'http://195.128.100.64:5000/route/v1';
 
+  
 
-  constructor(private http: HttpService) {
+  constructor(
+    private http: HttpService,
+    @Inject( LOCALE_ID ) private localID: string ) {
     
   }
   ngOnInit(): void {
     this.bigmapid = 'big'+this.route.routeid
-    this.starttime = new Date(this.route.starttime).toUTCString().slice(0, -3)
-    this.endtime = new Date(this.route.endtime).toUTCString().slice(0, -3)
+    this.starttime = this.route.starttime+''
+    this.endtime = this.route.endtime+''
   }
 
   ngAfterViewInit(): void {
@@ -85,6 +92,7 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
 
   private getRoute(): void{
     this.http.getRoute(this.route.routeid).subscribe(data=>{
+      console.log(data)
       this.routepositions = data
       this.positions = []
       for(var i = 0; i<this.routepositions.length; i++){
@@ -125,11 +133,14 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
 
   private getRouteBig(): void{
     this.http.getRoute(this.route.routeid).subscribe(data=>{
+      console.log(data)
       this.routepositions = data
       this.positions = []
       for(var i = 0; i<this.routepositions.length; i++){
         this.positions.push(L.latLng(this.routepositions[i].lat, this.routepositions[i].lng))
       }
+      let lid = this.localID
+      let times = data
       let lb = this.positions.length
       L.Routing.control({
         routeWhileDragging: false,
@@ -160,7 +171,7 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
                 iconAnchor: [ 13, 41 ],
                 iconUrl: 'assets/marker-icon.png',
                 shadowUrl: 'assets/marker-shadow.png'
-              })})
+              })}).bindPopup("<p>"+formatDate(times[j].time, 'dd.MM.yyyy HH:mm:ss', lid)+"</p>")
             }
           }
         })

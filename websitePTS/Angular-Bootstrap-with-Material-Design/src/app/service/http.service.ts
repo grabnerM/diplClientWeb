@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AddressLatLng } from '../class/addresslatlng';
+import { LivePosition } from '../class/livePosition';
 import { Routeposition } from '../class/routeposition';
 import { Sender } from '../class/sender';
 import { Senderroute } from '../class/senderroute';
@@ -19,13 +21,19 @@ export class HttpService {
   public getLocations() {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
 
-    return this.http.get(baseUrl + 'webAppController/getLocations', {headers})
+    return this.http.get<LivePosition[]>(baseUrl + 'receiver/getAllPositions', {headers})
   }
 
   public getRoute(id) {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
 
-    return this.http.get<Routeposition[]>(baseUrl + 'receiver/getRouteById/', {headers})
+    return this.http.get<Routeposition[]>(baseUrl + 'receiver/getRouteById/'+id, {headers})
+  }
+
+  public getRouteByTask(id) {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+
+    return this.http.get<Routeposition[]>(baseUrl + 'receiver/getRouteByTask/'+id, {headers})
   }
 
   public getSenderForReceiver(id){
@@ -44,5 +52,15 @@ export class HttpService {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
 
     return this.http.post(baseUrl + 'receiver/createTask', task, {headers})
+  }
+
+  public getLatLngFromAddress(address: string){
+    return this.http.get<AddressLatLng[]>("https://nominatim.openstreetmap.org/search?q="+address+"&format=json&countrycodes=at");
+  }
+
+  public getOpenTasks(){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
+    return this.http.get<Task[]>(baseUrl + 'receiver/getOpenTasksByReceiver', {headers})
   }
 }

@@ -9,16 +9,15 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "assets":
-    [
-      "src/favicon.ico",
-      "src/assets",
-      {
-          "glob": "**/*",
-          "input": "node_modules/leaflet/dist/images/",
-          "output": "./assets/"
-      }
-    ],
+  "assets": [
+    "src/favicon.ico",
+    "src/assets",
+    {
+      "glob": "**/*",
+      "input": "node_modules/leaflet/dist/images/",
+      "output": "./assets/"
+    }
+  ],
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.0.7",
@@ -40,6 +39,7 @@
     "js-sha512": "^0.8.0",
     "leaflet": "^1.7.1",
     "leaflet-routing-machine": "^3.2.12",
+    "leaflet.markercluster": "^1.4.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
