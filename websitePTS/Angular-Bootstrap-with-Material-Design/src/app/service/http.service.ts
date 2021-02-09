@@ -7,7 +7,7 @@ import { Sender } from '../class/sender';
 import { Senderroute } from '../class/senderroute';
 import { Task } from '../class/task';
 
-const baseUrl = 'http://localhost:8080/'
+const baseUrl = 'https://v2202010130694129625.goodsrv.de/'
 
 @Injectable({
   providedIn: 'root'

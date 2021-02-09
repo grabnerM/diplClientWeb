@@ -20,8 +20,8 @@
 
                         <!-- Description -->
                         <h4 class="white-text my-4">Der einfache Kurierdienst für jedermann.</h4>
-                        <button type="button" class="btn btn-outline-white" onClick="document.getElementById('middle').scrollIntoView();">Read more<i class="fa fa-book ml-2"></i></button>
-
+                        <button type="button" class="btn btn-outline-white" id="readMore" (click)="scrollToTargetAdjusted()">Read more<i class="fa fa-book ml-2"></i></button>
+                        
                     </div>
 
                 </div>
@@ -63,7 +63,7 @@
 
                 <!--Grid column-->
                 <div class="col-md-4 mb-5">
-                    <i class="fa fa-box fa-4x orange-text"></i>
+                    <i class="fa fa-box fa-4x light-blue-text"></i>
                     <h4 class="my-4 font-weight-bold">Lieferungen verschiedenster Größe</h4>
                     <p class="grey-text">
                         Mit unserem Dienst ist es möglich Lieferungen bis zu 20kg und einer Größe bis zu 50x50x50cm transportieren zu lassen.
@@ -73,7 +73,7 @@
 
                 <!--Grid column-->
                 <div class="col-md-4 mb-1">
-                    <i class="fa fa-heart fa-4x orange-text"></i>
+                    <i class="fa fa-heart fa-4x light-blue-text"></i>
                     <h4 class="my-4 font-weight-bold">Engagement</h4>
                     <p class="grey-text">
                         Unsere Kuriere arbeiten mit viel Engagement und Vorsicht, damit deine Lieferung ohne Beschädigungen bei dir ankommt.
@@ -83,7 +83,7 @@
 
                 <!--Grid column-->
                 <div class="col-md-4 mb-1">
-                    <i class="fa fa-bicycle fa-4x orange-text"></i>
+                    <i class="fa fa-bicycle fa-4x light-blue-text"></i>
                     <h4 class="my-4 font-weight-bold">E-Bikes</h4>
                     <p class="grey-text">
                         Unsere Lieferanten sind mit modernen E-Bikes ausgerüstet, damit sie schnell und sicher deine Ware von A nach B bringen können.
@@ -229,10 +229,11 @@
     <!--/.Footer Links-->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <div class="footer-copyright text-center py-3">© 2021 Copyright:
         <a href="https://positiontrackingsystem.com/"> PositionTrackingSystem.com</a>
     </div>
     <!-- Copyright -->
 
 </footer>
+
 <!--Footer-->

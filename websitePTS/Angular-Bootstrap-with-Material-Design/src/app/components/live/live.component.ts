@@ -47,7 +47,7 @@ export class LiveComponent implements AfterViewInit {
     this.getUser()
     this.getLocations()
 
-    this.wsUri = 'ws://localhost:3000/' + localStorage.getItem('userid');
+    this.wsUri = 'ws://195.128.100.64:3000/' + localStorage.getItem('userid');
     this.websocket = new WebSocket(this.wsUri);
     this.websocket.onopen = (evt) => console.log('Websocket Opened');
 

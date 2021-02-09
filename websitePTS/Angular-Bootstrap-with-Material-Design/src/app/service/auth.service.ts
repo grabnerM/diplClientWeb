@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Receiver } from '../class/receiver';
 
-const baseUrl = 'http://localhost:8080/'
+const baseUrl = 'https://v2202010130694129625.goodsrv.de/'
 
 @Injectable({
   providedIn: 'root'

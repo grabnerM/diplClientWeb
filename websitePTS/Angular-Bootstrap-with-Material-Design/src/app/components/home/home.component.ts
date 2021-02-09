@@ -18,4 +18,16 @@ export class HomeComponent implements AfterViewInit {
     
   }
 
+  scrollToTargetAdjusted(){
+    var element = document.getElementById('middle');
+    var headerOffset = 45;
+    var elementPosition = element.getBoundingClientRect().top;
+    var offsetPosition = elementPosition - headerOffset;
+
+    window.scrollTo({
+         top: offsetPosition,
+         behavior: "smooth"
+    });
+}
+
 }

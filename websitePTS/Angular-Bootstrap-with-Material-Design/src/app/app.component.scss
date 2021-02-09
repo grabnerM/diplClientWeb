@@ -19,32 +19,10 @@
     align-items: center;
 }
 
-.invite {
-    margin-top: 7vh;
-}
-
-mdb-navbar {
-    min-height: 10vh;
-}
-
-links {
-    margin: 0px;
-}
-.navbar {
-    padding: 0;
-}
-
-#navbarCollapse {
-    margin: 0;
-    padding: 0;
-}
-
-.navbar.scrolling-navbar {
-    padding-top: 12px;
-    padding-bottom: 12px;
-}
-
 .md-form.form-sm {
     padding: 0;
     margin: 0;
+}
+.navbar::ng-deep {
+    padding: 1rem 1rem;
 }
