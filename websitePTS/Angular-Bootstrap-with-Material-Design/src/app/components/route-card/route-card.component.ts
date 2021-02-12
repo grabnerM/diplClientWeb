@@ -30,7 +30,7 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
   endtime: string = ""
 
   positions = []
-  osrm_url = 'http://195.128.100.64:5000/route/v1';
+  osrm_url = 'https://v2202010130694129625.goodsrv.de:50/route/v1';
 
   
 
@@ -60,8 +60,6 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
     await this.delay(600);
 
     this.initMapBig()
-    this.getRouteBig()
-
     
   }
   
@@ -76,18 +74,22 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
     tiles.addTo(this.map);
+    
   }
 
   private initMapBig(): void {
-    this.bigmap = L.map('big'+this.route.routeid, {
-      center: [ 48.16667, 14.03333 ],
-      zoom: 10
-    });
-    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    });
-    tiles.addTo(this.bigmap);
+    if(!this.bigmap){
+      this.bigmap = L.map('big'+this.route.routeid, {
+        center: [ 48.16667, 14.03333 ],
+        zoom: 10
+      });
+      const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      });
+      tiles.addTo(this.bigmap);
+      this.getRouteBig()
+    }
   }
 
   private getRoute(): void{

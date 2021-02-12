@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Address } from '../class/address';
 import { AddressLatLng } from '../class/addresslatlng';
 import { LivePosition } from '../class/livePosition';
 import { Routeposition } from '../class/routeposition';
@@ -56,6 +57,10 @@ export class HttpService {
 
   public getLatLngFromAddress(address: string){
     return this.http.get<AddressLatLng[]>("https://nominatim.openstreetmap.org/search?q="+address+"&format=json&countrycodes=at");
+  }
+
+  public getAddressFromLatLng(lat: number, lng: number){
+    return this.http.get<Address>("https://nominatim.openstreetmap.org/reverse?lat="+lat+"&lon="+lng+"&format=json")
   }
 
   public getOpenTasks(){

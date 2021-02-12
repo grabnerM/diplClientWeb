@@ -7,7 +7,7 @@
 
 #map {
     width: 70vw;
-    height: 93vh;;
+    height: 94vh;;
 }
 
 
@@ -18,9 +18,25 @@
 
 .open {
     color: red;
+    margin-right: 1rem;
 }
 
-.progress {
+.Inprogress {
     color: green;
+    margin-right: 1rem;
+}
+
+.showMore {
+    cursor: pointer;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+.taskStatus {
+    display: flex;
+    flex-direction: row;
+}
+
+.showLess {
+    cursor: pointer;
 }
 

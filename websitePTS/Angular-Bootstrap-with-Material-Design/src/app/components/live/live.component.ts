@@ -25,14 +25,18 @@ export class LiveComponent implements AfterViewInit {
   public websocket: WebSocket;
   public wsUri: string;
 
-  osrm_url = 'http://195.128.100.64:5000/route/v1';
+  public route
 
-  public username = ""
+  osrm_url = 'http://195.128.100.64:5000/route/v1';
+  username = ""
+  public listHead = ""
 
   public tasks: Task[] = []
 
   positions = []
-  routepositions: Routeposition[]
+  routepositions: Routeposition[] = []
+
+  isRouteShowing = false
 
   constructor (
     private auth: AuthService,
@@ -70,8 +74,13 @@ export class LiveComponent implements AfterViewInit {
       if (data){
         localStorage.setItem('userid', data.receiverid + "")
         this.username = data.username
+        this.setHeadlineToUsername()
       }
     });
+  }
+
+  setHeadlineToUsername(){
+    this.listHead = "Aktuelle Tasks von "+this.username
   }
 
   private getTasks() {
@@ -82,10 +91,12 @@ export class LiveComponent implements AfterViewInit {
   }
 
   public getLocations() {
+    this.isRouteShowing = false
+    this.routepositions = []
     this.httpService.getLocations().subscribe( data => {
       this.removeMarkers()
       for (let i = 0; i<data.length; i++){
-        let m = L.marker(L.latLng(data[i].lat, data[i].lng), {draggable: true, icon: L.icon({
+        let m = L.marker(L.latLng(data[i].lat, data[i].lng), {draggable: false, icon: L.icon({
           iconSize: [ 25, 41 ],
           iconAnchor: [ 13, 41 ],
           iconUrl: 'assets/marker-icon.png',
@@ -98,10 +109,15 @@ export class LiveComponent implements AfterViewInit {
         this.map.addLayer(this.locations[j])
       }
     })
-
   }
 
   public removeMarkers(){
+    if(this.route){
+      console.log("removed route")
+      this.map.removeControl(this.route)
+      this.route = undefined
+    }
+    
     for(let j = 0; j<this.locations.length; j++){
       this.map.removeLayer(this.locations[j])
     }
@@ -124,96 +140,84 @@ export class LiveComponent implements AfterViewInit {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
 
-    /*L.popup().setLatLng([48.16680, 14.03333])
-    .setContent('<p>Hello world!<br />This is a nice popup.</p>')
-    .openOn(this.map);*/
 
     let positions = [L.latLng(48.138435, 14.004268), L.latLng(48.155429, 14.036327)]
 
     tiles.addTo(this.map);
 
-    /*L.Routing.control({
-      router: new L.Routing.OSRMv1({
-        serviceUrl: this.osrm_url
-      }),
-      showAlternatives: false,
-      fitSelectedRoutes: false,
-      addWaypoints: false,
-      show: false,
-      routeWhileDragging: true,
-      plan: L.Routing.plan(positions,{
-        createMarker: function(j, waypoint) {
-          if (j == 0) {
-            this.startpoint = L.marker(waypoint.latLng, {draggable: true, icon: L.icon({
-              iconSize: [ 25, 41 ],
-              iconAnchor: [ 13, 41 ],
-              iconUrl: 'assets/marker-icon.png',
-              shadowUrl: 'assets/marker-shadow.png'
-            })}).bindPopup('<p>Start</p>')
-            return this.startpoint
-          } else if (j == 1) {
-            this.endpoint = L.marker(waypoint.latLng, {draggable: true, icon: L.icon({
-              iconSize: [ 25, 41 ],
-              iconAnchor: [ 13, 41 ],
-              iconUrl: 'assets/marker-icon.png',
-              shadowUrl: 'assets/marker-shadow.png'
-            })}).bindPopup('<p>End</p>')
-            return this.endpoint
-          }
-        }
-      })
-    }).addTo(this.map);*/
   }
 
-  public getRoute(id: number){
-      this.httpService.getRouteByTask(id).subscribe(data=>{
+  public getRoute(t: Task){
+    this.isRouteShowing = true
+    this.listHead = "Route des Tasks: " + t.title
+    this.httpService.getRouteByTask(t.taskid).subscribe(data=>{
 
-        this.removeMarkers();
+      this.removeMarkers();
 
-        console.log(data)
+      console.log(data)
 
-        this.routepositions = data
-        this.positions = []
-        for(var i = 0; i<this.routepositions.length; i++){
-          this.positions.push(L.latLng(this.routepositions[i].lat, this.routepositions[i].lng))
-        }
-        let lid = this.localID
-        let times = data
-        let lb = this.positions.length
-        L.Routing.control({
-          routeWhileDragging: false,
-          show: false,
-          router: new L.Routing.OSRMv1({
-            serviceUrl: this.osrm_url
-          }),
-          addWaypoints: false,
-          plan: L.Routing.plan(this.positions,{
-            createMarker: function(j, waypoint) {
-              if (j == 0) {
-                return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
-                  iconSize: [ 25, 41 ],
-                  iconAnchor: [ 13, 41 ],
-                  iconUrl: 'assets/marker-icon.png',
-                  shadowUrl: 'assets/marker-shadow.png'
-                })}).bindPopup('<p>Start</p>')
-              } else if (j+1 == lb) {
-                return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
-                  iconSize: [ 25, 41 ],
-                  iconAnchor: [ 13, 41 ],
-                  iconUrl: 'assets/marker-icon.png',
-                  shadowUrl: 'assets/marker-shadow.png'
-                })}).bindPopup('<p>End</p>')
-              } else{
-                return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
-                  iconSize: [ 25, 41 ],
-                  iconAnchor: [ 13, 41 ],
-                  iconUrl: 'assets/marker-icon.png',
-                  shadowUrl: 'assets/marker-shadow.png'
-                })}).bindPopup("<p>"+formatDate(times[j].time, 'dd.MM.yyyy HH:mm:ss', lid)+"</p>")
-              }
+      this.routepositions = data
+      this.positions = []
+      for(var i = 0; i<this.routepositions.length; i++){
+        this.positions.push(L.latLng(this.routepositions[i].lat, this.routepositions[i].lng))
+      }
+
+      let j = 0
+      for(var i = 0; i<this.routepositions.length; i++){
+        this.httpService.getAddressFromLatLng(this.routepositions[i].lat, this.routepositions[i].lng).subscribe(data => {
+          console.log(data.address.town)
+          console.log(i)
+          console.log(this.routepositions[i])
+          this.routepositions[j].road = data.address.road
+          if(data.address.town){
+            this.routepositions[j].town = data.address.town
+          }else if(data.address.village){
+            this.routepositions[j].town = data.address.village
+          }
+          j++
+        })
+      }
+      
+
+      let lid = this.localID
+      let times = data
+      let lb = this.positions.length
+      this.route = L.Routing.control({
+        routeWhileDragging: false,
+        show: false,
+        router: new L.Routing.OSRMv1({
+          serviceUrl: this.osrm_url
+        }),
+        addWaypoints: false,
+        plan: L.Routing.plan(this.positions,{
+          createMarker: function(j, waypoint) {
+            if (j == 0) {
+              return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
+                iconSize: [ 25, 41 ],
+                iconAnchor: [ 13, 41 ],
+                iconUrl: 'assets/marker-icon.png',
+                shadowUrl: 'assets/marker-shadow.png'
+              })}).bindPopup('<p>Start</p>')
+            } else if (j+1 == lb) {
+              return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
+                iconSize: [ 25, 41 ],
+                iconAnchor: [ 13, 41 ],
+                iconUrl: 'assets/marker-icon.png',
+                shadowUrl: 'assets/marker-shadow.png'
+              })}).bindPopup('<p>End</p>')
+            } else{
+              return L.marker(waypoint.latLng, {draggable: false, icon: L.icon({
+                iconSize: [ 25, 41 ],
+                iconAnchor: [ 13, 41 ],
+                iconUrl: 'assets/marker-icon.png',
+                shadowUrl: 'assets/marker-shadow.png'
+              })}).bindPopup("<p>"+formatDate(times[j].time, 'dd.MM.yyyy HH:mm:ss', lid)+"</p>")
             }
-          })
+          }
+        })
       }).addTo(this.map);
+
+      
     })
   }
 

@@ -3,4 +3,6 @@ export class Routeposition {
     lat: number;
     lng: number;
     time: Date;
+    town: string;
+    road: string;
 }
