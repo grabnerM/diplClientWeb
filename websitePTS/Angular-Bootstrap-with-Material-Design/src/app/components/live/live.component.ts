@@ -37,6 +37,7 @@ export class LiveComponent implements AfterViewInit {
   routepositions: Routeposition[] = []
 
   isRouteShowing = false
+  currentTask: Task
 
   constructor (
     private auth: AuthService,
@@ -60,7 +61,11 @@ export class LiveComponent implements AfterViewInit {
       console.log(evt.data);
       if (evt.data === 'Data changed '+localStorage.getItem('userid')) {
         this.getTasks()
-        this.getLocations()
+        if(this.isRouteShowing){
+          this.getRoute(this.currentTask)
+        } else{
+          this.getLocations()
+        }
       }
     };
 
@@ -149,6 +154,7 @@ export class LiveComponent implements AfterViewInit {
 
   public getRoute(t: Task){
     this.isRouteShowing = true
+    this.currentTask = t
     this.listHead = "Route des Tasks: " + t.title
     this.httpService.getRouteByTask(t.taskid).subscribe(data=>{
 
