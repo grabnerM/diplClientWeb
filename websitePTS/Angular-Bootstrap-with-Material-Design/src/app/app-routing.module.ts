@@ -29,13 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    component: AboutComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'about/:token',
-    component: AboutComponent,
-    canActivate: [AuthGuard]
+    component: AboutComponent
   },
   {
     path: 'newTask',
