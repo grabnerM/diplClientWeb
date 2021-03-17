@@ -195,7 +195,7 @@ export class NewTaskComponent implements AfterContentInit{
       if(data[0]){
         this.startpoint = L.latLng(+data[0].lat, +data[0].lon)
 
-        this.route.setWaypoints([this.startpoint, this.endpoint])
+        this.route.setWaypoints([this.startpoint, L.latLng(this.getLat(1), this.getLng(1))])
 
       } else {
         console.log("error")
@@ -209,7 +209,7 @@ export class NewTaskComponent implements AfterContentInit{
       if(data[0]){
         this.endpoint = L.latLng(+data[0].lat, +data[0].lon)
 
-        this.route.setWaypoints([this.startpoint, this.endpoint])
+        this.route.setWaypoints([L.latLng(this.getLat(0), this.getLng(0)), this.endpoint])
 
       } else {
         console.log("error")
