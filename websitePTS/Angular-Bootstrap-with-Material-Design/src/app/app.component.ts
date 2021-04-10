@@ -39,8 +39,21 @@ export class AppComponent {
     document.body.removeChild(selBox);
   }
 
+  isLoggedIn(){
+    console.log(localStorage.getItem('token'))
+    if(localStorage.getItem('token')){
+      console.log(true)
+      return true
+    }
+    return false
+  }
+
+  login(){
+    this.router.navigate(['login'])
+  }
+
   logout(){
-    localStorage.setItem('token', null)
+    localStorage.removeItem('token')
     this.router.navigate(['login'])
   }
 }

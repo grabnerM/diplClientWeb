@@ -171,6 +171,7 @@ export class NewTaskComponent implements AfterContentInit{
     
     this.httpService.createTask(task).subscribe( data => {
       console.log(data)
+      this.router.navigate(["live"])
     })
   }
 
