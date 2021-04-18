@@ -14,6 +14,11 @@ import { Task } from 'src/app/class/task';
   templateUrl: './new-task.component.html',
   styleUrls: ['./new-task.component.scss']
 })
+/*
+  Autor: Jakob Hocheneder
+  Titel: Neuen Auftrag erstellen
+  Beschreibung: Component zum erstellen eines neuen Auftrags
+*/
 export class NewTaskComponent implements AfterContentInit{
 
   public title: string
@@ -28,11 +33,7 @@ export class NewTaskComponent implements AfterContentInit{
 
   private map: L.Map
   private locations: any
-  private currentLocation: any
   public senders: Sender[] = []
-
-  public websocket: WebSocket;
-  public wsUri: string;
 
   osrm_url = 'http://195.128.100.64:5000/route/v1';
 
@@ -45,28 +46,17 @@ export class NewTaskComponent implements AfterContentInit{
     private router: Router
   ) { }
   
+  /**
+   * Initialisierung der Map nach laden der Website
+   */
   ngAfterContentInit(): void {
-    this.getCurrentLocation()
     this.initMap()
     this.getUser()
-
-    this.wsUri = 'ws://localhost:3000/ws/todo/' + localStorage.getItem('userid');
-    this.websocket = new WebSocket(this.wsUri);
-    this.websocket.onopen = (evt) => console.log('Websocket Opened');
-
-
-    this.websocket.onmessage = (evt) => {
-      console.log(evt.data);
-      if (evt.data === 'Data changed'+localStorage.getItem('userid')) {
-        this.getCurrentLocation()
-      }
-    };
-
-    this.websocket.onerror = (evt) => console.log('Websocket Error');
-
-    this.websocket.onclose = (evt) => console.log('Websocket Closed');
   }
 
+  /**
+   * Informationen der Benutzers vom Server abfragen
+   */
   private getUser(){
     this.auth.getUser().subscribe(data =>{
       if (data){
@@ -76,14 +66,9 @@ export class NewTaskComponent implements AfterContentInit{
     });
   }
 
-  private getCurrentLocation() {
-    /*this.httpService.getSenderForReceiver(localStorage.getItem('userid')).subscribe(data =>{
-      if (data){
-        this.senders = data;
-      }
-    })*/
-  }
-
+  /**
+   * Initialisierung der Map
+   */
   private initMap(): void {
     this.map = new L.Map('map', {
       center: [ 48.16667, 14.03333 ],
@@ -93,10 +78,6 @@ export class NewTaskComponent implements AfterContentInit{
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
-
-    /*L.popup().setLatLng([48.16680, 14.03333])
-    .setContent('<p>Hello world!<br />This is a nice popup.</p>')
-    .openOn(this.map);*/
 
     let positions = [L.latLng(48.138435, 14.004268), L.latLng(48.155429, 14.036327)]
 
@@ -111,7 +92,6 @@ export class NewTaskComponent implements AfterContentInit{
       addWaypoints: false,
       show: false,
       routeWhileDragging: true,
-      //waypoints: [this.startpoint, this.endpoint]
       plan: L.Routing.plan(positions,{
         createMarker: function(j, waypoint) {
           if (j == 0) {
@@ -138,24 +118,16 @@ export class NewTaskComponent implements AfterContentInit{
     console.log(this.route.getWaypoints[0])
   }
 
-  public getLocations() {
-    this.httpService.getLocations().subscribe( locations => {
-      this.locations = locations
-    })
-
-    this.setLocations()
-  }
-
-  private setLocations() {
-    for (let mark of this.locations) {
-      L.marker(mark).addTo(this.map)
-    }
-  }
-
+  /**
+   * Logout
+   */
   public logOut() {
     this.auth.logout()
   }
 
+  /**
+   * Erstellen des Auftrags
+   */
   public save(){
     let task: Task = new Task()
 
@@ -175,6 +147,10 @@ export class NewTaskComponent implements AfterContentInit{
     })
   }
 
+  /**
+   * Latitide der per Drag & Drop erstellten Wegpunkte bekommen
+   * @param i Id des Wegpunktes
+   */
   public getLat(i:number){
     if(this.route){
       return Math.round(this.route.getPlan().getWaypoints()[i].latLng.lat * 1000000)/1000000
@@ -183,6 +159,10 @@ export class NewTaskComponent implements AfterContentInit{
     return 0
   }
 
+  /**
+   * Longitude der per Drag & Drop erstellten Wegpunkte bekommen
+   * @param i Id des Wegpunktes
+   */
   public getLng(i){
     if(this.route){
       return Math.round(this.route.getPlan().getWaypoints()[i].latLng.lng * 1000000)/1000000
@@ -191,6 +171,9 @@ export class NewTaskComponent implements AfterContentInit{
     return 0
   }
 
+  /**
+   * Latitide und Longitide von per Textfeld eingegebenen Startpunkt bekommen
+   */
   public searchStart(){
     this.httpService.getLatLngFromAddress(this.addressStart).subscribe(data => {
       if(data[0]){
@@ -205,6 +188,9 @@ export class NewTaskComponent implements AfterContentInit{
     })
   }
 
+  /**
+   * Latitide und Longitide von per Textfeld eingegebenen Endpunkt bekommen
+   */
   public searchEnd(){
     this.httpService.getLatLngFromAddress(this.addressEnd).subscribe(data => {
       if(data[0]){

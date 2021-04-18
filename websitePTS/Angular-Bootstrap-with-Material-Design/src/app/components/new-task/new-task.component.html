@@ -1,4 +1,5 @@
 <div id="body">
+    <!--Formular für die erstellung eines neuen Auftrags-->
     <div id="left">
         <ul class="list-group" id="senderlist">
             <li class="list-group-item d-flex justify-content-between blue lighten-1 align-items-center text-white">
@@ -34,32 +35,12 @@
                     <button class="auth-button addressSearch blue lighten-1 text-white" type="button" mdbBtn (click)="searchEnd()" mdbWavesEffect>Suchen</button>
                 </div>
             </li>
-            <!--<li class="list-group-item d-flex justify-content-between align-items-center" >
-                
-                <div class="md-form form-group mt-5">
-                    <input mdbInput mdbValidate type="text" id="startlat" class="form-control" [value]="getLat(0)">
-                    <label for="startlat" class="">Start Latitude</label>
-                </div>
-                <div class="md-form form-group mt-5">
-                    <input mdbInput mdbValidate type="number" id="startlng" class="form-control" [value]="getLng(0)">
-                    <label for="startlng" class="">Start Longitude</label>
-                </div>
-            </li>-->
-            <!--<li class="list-group-item d-flex justify-content-between align-items-center" >
-                <div class="md-form form-group mt-5">
-                    <input mdbInput type="text" id="endlat" class="form-control" [value]="getLat(1)"> 
-                    <label for="endlat" class="">End Latitude</label>
-                </div>
-                <div class="md-form form-group mt-5">
-                    <input mdbInput type="number" id="endlng" class="form-control" [value]="getLng(1)">
-                    <label for="endlng" class="">End Longitude</label>
-                </div>
-            </li>-->
             <li class="list-group-item d-flex justify-content-between align-items-center" >
                 <button class="auth-button blue lighten-1 text-white" type="button" mdbBtn (click)="save()" mdbWavesEffect>Speichern</button>
             </li>
         </ul>
     </div>
+    <!--Map-->
     <div id="right">
             <div id="map"></div>
     </div>

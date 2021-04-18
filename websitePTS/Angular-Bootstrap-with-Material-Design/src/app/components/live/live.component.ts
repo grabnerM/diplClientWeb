@@ -14,13 +14,15 @@ import { HttpService } from 'src/app/service/http.service';
   templateUrl: './live.component.html',
   styleUrls: ['./live.component.scss']
 })
+/*
+  Autor: Jakob Hocheneder
+  Titel: Live Ansicht Component
+  Beschreibung:
+*/
 export class LiveComponent implements AfterViewInit {
-  private startpoint
-  private endpoint
 
   private map: L.Map
   private locations: L.Marker[] = []
-  private currentLocation: any
 
   public websocket: WebSocket;
   public wsUri: string;
@@ -46,6 +48,9 @@ export class LiveComponent implements AfterViewInit {
     @Inject( LOCALE_ID ) private localID: string 
   ) { }
   
+  /**
+   * Initialisierung der Map und Verbindung zum WebSocket
+   */
   ngAfterViewInit(): void {
     this.getTasks()
     this.initMap()
@@ -74,6 +79,9 @@ export class LiveComponent implements AfterViewInit {
     this.websocket.onclose = (evt) => console.log('Websocket Closed');
   }
 
+  /**
+   * Informationen der Benutzers vom Server abfragen
+   */
   private getUser(){
     this.auth.getUser().subscribe(data =>{
       if (data){
@@ -84,10 +92,16 @@ export class LiveComponent implements AfterViewInit {
     });
   }
 
+  /**
+   * Username in Überschrift schreiben
+   */
   setHeadlineToUsername(){
     this.listHead = "Aktuelle Tasks von "+this.username
   }
 
+  /**
+   * Alle offenen Tasks vom Server abfragen
+   */
   private getTasks() {
     this.httpService.getOpenTasks().subscribe(data => {
       console.log(data)
@@ -95,6 +109,9 @@ export class LiveComponent implements AfterViewInit {
     })
   }
 
+  /**
+   * Aktuelle Positionen der Kuriere abfragen und in der Map einzeichnen
+   */
   public getLocations() {
     this.isRouteShowing = false
     this.routepositions = []
@@ -116,6 +133,9 @@ export class LiveComponent implements AfterViewInit {
     })
   }
 
+  /**
+   * Alle Marker der Map entfernen
+   */
   public removeMarkers(){
     if(this.route){
       console.log("removed route")
@@ -129,12 +149,9 @@ export class LiveComponent implements AfterViewInit {
     this.locations = []
   }
 
-  private setLocations() {
-    /*for (let mark of this.locations) {
-      L.marker(mark).addTo(this.map)
-    }*/
-  }
-
+  /**
+   * Map erstellen
+   */
   private initMap(): void {
     this.map = new L.Map('map', {
       center: [ 48.16667, 14.03333 ],
@@ -145,13 +162,14 @@ export class LiveComponent implements AfterViewInit {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
 
-
-    let positions = [L.latLng(48.138435, 14.004268), L.latLng(48.155429, 14.036327)]
-
     tiles.addTo(this.map);
 
   }
 
+  /**
+   * Route von einem Auftrag abfragen und in der Map einzeichnen
+   * @param t 
+   */
   public getRoute(t: Task){
     this.isRouteShowing = true
     this.currentTask = t
@@ -225,9 +243,5 @@ export class LiveComponent implements AfterViewInit {
 
       
     })
-  }
-
-  public logOut() {
-    this.auth.logout()
   }
 }

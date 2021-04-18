@@ -14,6 +14,11 @@ import { Inject } from '@angular/core';
   templateUrl: './route-card.component.html',
   styleUrls: ['./route-card.component.scss']
 })
+/*
+  Autor: Jakob Hochender
+  Titel: Route Card Component
+  Beschreibung: Eine Card innerhalb der Routenhistorie
+*/
 export class RouteCardComponent implements AfterViewInit, OnInit{
 
   private map: L.Map
@@ -39,12 +44,18 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
     @Inject( LOCALE_ID ) private localID: string ) {
     
   }
+  /**
+   * Initialisierung der großen map
+   */
   ngOnInit(): void {
     this.bigmapid = 'big'+this.route.routeid
     this.starttime = this.route.starttime+''
     this.endtime = this.route.endtime+''
   }
 
+  /**
+   * Initialisierung der kleinen map und request für die Route
+   */
   ngAfterViewInit(): void {
     this.initMap()
     this.getRoute()
@@ -54,16 +65,19 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
       return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
+  /**
+   * Warten auf das Initialisieren der großen Map
+   */
   async bigmapinit(){
-    console.log("bigmapinit")
-
     await this.delay(600);
 
     this.initMapBig()
     
   }
   
-
+  /**
+   * Initialisierung der Map
+   */
   private initMap(): void {
     this.map = L.map(''+this.route.routeid, {
       center: [ 48.16667, 14.03333 ],
@@ -77,6 +91,9 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
     
   }
 
+  /**
+   * Initialisierung der großen Map
+   */
   private initMapBig(): void {
     if(!this.bigmap){
       this.bigmap = L.map('big'+this.route.routeid, {
@@ -92,6 +109,9 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
     }
   }
 
+  /**
+   * Route erstellen für die kleine Map
+   */
   private getRoute(): void{
     this.http.getRoute(this.route.routeid).subscribe(data=>{
       console.log(data)
@@ -133,6 +153,9 @@ export class RouteCardComponent implements AfterViewInit, OnInit{
     
   }
 
+  /**
+   * Route erstellen für die große Map
+   */
   private getRouteBig(): void{
     this.http.getRoute(this.route.routeid).subscribe(data=>{
       console.log(data)

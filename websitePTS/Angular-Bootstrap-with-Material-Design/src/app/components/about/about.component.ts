@@ -6,19 +6,18 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
+/*
+  Autor: Jakob Hochender
+  Titel: About Component
+  Beschreibung: About Seite
+*/
 export class AboutComponent implements OnInit {
 
   token: number;
-  private sub: any;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.sub = this.route.params.subscribe(params => {
-      this.token = params['token']; // (+) converts string 'id' to a number
-      console.log(this.token)
-      // In a real app: dispatch action to load the details here.
-   });
   }
 
 }

@@ -1,4 +1,5 @@
 <div id="body">
+    <!--Liste an Aufträgen-->
     <div id="left">
         <ul class="list-group" id="senderlist">
             <li class="list-group-item d-flex justify-content-between blue lighten-1 align-items-center text-white">
@@ -18,8 +19,8 @@
                 <p>{{ i+1 }}: {{rp.time | date: 'dd.MM.yyyy HH:mm:ss' }}</p> <p> {{rp.town}}: {{rp.road}}</p>
             </li>
         </ul>
-        <!--<button (click)="removeMarkers()">Remove</button>-->
     </div>
+    <!--Map-->
     <div id="right">
             <div id="map"></div>
     </div>

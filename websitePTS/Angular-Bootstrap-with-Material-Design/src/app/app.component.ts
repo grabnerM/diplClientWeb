@@ -6,18 +6,25 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+/*
+  Autor: Jakob Hocheneder
+  Titel: App Component
+  Beschreibung: Haupt Component der WebApp
+*/
 export class AppComponent {
-
-  link = ""
 
   constructor(private router: Router) { }
 
+  /**
+   * Überprüfen ob der Nutzer auf der Login page ist, nach laden der Website
+   */
   ngOnInit(){
     this.islogin()
-    this.link = 'localhost:4200/about/'+localStorage.getItem('token')
-
   }
 
+  /**
+   * Überprüfen ob der Nutzer gerade auf der Login page ist, damit die Navbar ausgeblendet wird
+   */
   public islogin(){
     if(this.router.url == "/" || this.router.url == "/login"){
       return false;
@@ -25,20 +32,9 @@ export class AppComponent {
     return true;
   }
 
-  copy(){
-    let selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = this.link;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
-  }
-
+  /**
+   * Überprüfen üb der token im localStorage gesetzt ist
+   */
   isLoggedIn(){
     console.log(localStorage.getItem('token'))
     if(localStorage.getItem('token')){
@@ -48,10 +44,16 @@ export class AppComponent {
     return false
   }
 
+  /**
+   * Zur Login page navigieren
+   */
   login(){
     this.router.navigate(['login'])
   }
 
+  /**
+   * Token aus dem localStorage löschen und zur Login page navigieren
+   */
   logout(){
     localStorage.removeItem('token')
     this.router.navigate(['login'])

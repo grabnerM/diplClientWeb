@@ -8,6 +8,11 @@ import { HttpService } from '../service/http.service';
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.scss']
 })
+/*
+  Autor: Jakob Hochender
+  Titel: Historie Component
+  Beschreibung: Component in welchem alle bisherigen Routen angezeigt werden
+*/
 export class HistoryComponent implements AfterViewInit {
 
   constructor(private http: HttpService) { }
@@ -18,6 +23,9 @@ export class HistoryComponent implements AfterViewInit {
     this.getOldRoutes()
   }
 
+  /**
+   * Liste aller Routen vom Server holen
+   */
   public getOldRoutes(){
 
     this.http.findOldRoutes(localStorage.getItem('userid')).subscribe(data=>{

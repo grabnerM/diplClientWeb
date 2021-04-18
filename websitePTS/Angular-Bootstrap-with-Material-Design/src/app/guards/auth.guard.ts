@@ -5,6 +5,11 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable({
   providedIn: 'root'
 })
+/*
+  Autor: Jakob Hocheneder
+  Titel: Authorization Guard
+  Beschreibung: Überprüft ob der Token gesetzt und gültig ist
+*/
 export class AuthGuard {
 
   constructor (

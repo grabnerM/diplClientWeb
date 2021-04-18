@@ -12,12 +12,19 @@ import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+/*
+  Autor: Jakob Hochender
+  Titel: Home Component
+  Beschreibung: Component der Landing Page
+*/
 export class HomeComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
-    
   }
 
+  /**
+   * Scroll zu dem middle Element
+   */
   scrollToTargetAdjusted(){
     var element = document.getElementById('middle');
     var headerOffset = 45;

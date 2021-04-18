@@ -10,6 +10,11 @@ import { AuthService } from '../../service/auth.service';
   templateUrl: './authentication.component.html',
   styleUrls: ['./authentication.component.scss']
 })
+/*
+  Autor: Jakob Hochender
+  Titel: Login und Register
+  Beschreibung: Validations und Requests an den Server
+*/
 export class AuthenticationComponent implements OnInit {
   registerForm: FormGroup;
 
@@ -24,6 +29,9 @@ export class AuthenticationComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
+  /**
+   * forBuilder für die Validations
+   */
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       username: new FormControl(null, [Validators.minLength(3), Validators.maxLength(40)]),
@@ -49,6 +57,9 @@ export class AuthenticationComponent implements OnInit {
     { value: 'D', label: 'Divers' },
   ];
 
+  /**
+   * Login und token setzen
+   */
   public login() {
     console.log("login")
 
@@ -63,6 +74,9 @@ export class AuthenticationComponent implements OnInit {
     })
   }
 
+  /**
+   * Register und token setzen
+   */
   public register() {
     console.log(this.registerForm.controls['sex'].value)
     if(this.registerForm.valid){

@@ -1,3 +1,4 @@
+<!--Navbar-->
 <header class="h-100" *ngIf="islogin()">
     <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark white" id="navBar" [containerInside]="false">
         <mdb-navbar-brand>
@@ -20,9 +21,6 @@
                 <li class="nav-item waves-light" mdbWavesEffect>
                     <a class="nav-link waves-light" mdbWavesEffect id="loginDiv" routerLink="/about">About</a>
                 </li>
-                <!--<li class="nav-item waves-light" mdbWavesEffect>
-                    <a class="nav-link waves-light blue lighten-1" mdbWavesEffect id="logout" (click)="logout()">Log Out</a>
-                </li>-->
             </ul>
             <form class="form-inline waves-light" mdbWavesEffect>
                 <div class="md-form my-0" *ngIf="!isLoggedIn()" >
